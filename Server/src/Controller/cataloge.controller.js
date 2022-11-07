@@ -1,4 +1,4 @@
-import {db} from "../DateBase/DataBase.js"
+import {db} from "../database.js"
 
 const getGender = async (req, res) =>{
     try{

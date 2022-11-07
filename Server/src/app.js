@@ -6,7 +6,8 @@ import Routes from "./Routes/RoutesDB.js";
 const app = express();
 
 //settings
-app.set("port", process.env.PORT || 4000);
+const port = 4000
+app.set("port", process.env.PORT || port);
 
 //middlewares
 // app.use(morgan("start"));
@@ -18,5 +19,5 @@ app.use(Routes);
 
 //starting server
 app.listen(app.get("port"), () => {
-    console.log("server running on port", 4000);
+    console.log("server running on port", port);
 });

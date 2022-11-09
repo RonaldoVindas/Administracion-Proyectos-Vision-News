@@ -29,8 +29,8 @@ export const createNew = async (req, res) =>{
 //Get news by ID
 export const getNewsById = async (req, res) =>{
     try{
-        const [rows] = await db.query("SELECT * FROM news");
-        res.json(rows);
+        const [rows] = await db.query("SELECT * FROM news WHERE news_id = ?", [req.params.id]);
+        res.json(rows[0]);
     }catch(e){
         res.status(500);
         res.send(e.message);

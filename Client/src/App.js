@@ -10,7 +10,7 @@ function App() {
   return (
     <Routes>
       <Route path='/news' element={<NewsPage/>}/>
-      <Route path='/new' element={<NewPage/>}/>
+      <Route path='/new/:new_id' element={<NewPage/>}/>
     </Routes>
   );
 }

@@ -24,6 +24,7 @@ const NewsPage = ()=>{
             <div className='content'>
             {news.map(eachNews =>{
                     return (
+                        <Link to={`/new/${eachNews.news_id}`}>
                         <div className="card">
                         <div className="titulo">
                             <h1>{eachNews.title}</h1>
@@ -40,6 +41,7 @@ const NewsPage = ()=>{
                             <h2>{eachNews.release_date} </h2>
                         </div>
                         </div>
+                        </Link>
                     )
                 })
                 }

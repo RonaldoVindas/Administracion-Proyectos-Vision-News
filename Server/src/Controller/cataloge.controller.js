@@ -1,14 +1,54 @@
 import {db} from "../database.js"
 
-const getGender = async (req, res) =>{
+const getGenders = async (req, res) =>{
     try{
-        const result = await db.query("SELECT * FROM gender");
+        const result = await db.query("SELECT gender_id, description FROM gender");
         res.json(result);
     }catch(e){
         res.status(500);
         res.send(e.message);
     }
 }; 
+
+const getUniversities = async (req, res) =>{
+    try{
+        const result = await db.query("SELECT university_id, name, acronym FROM university");
+        res.json(result);
+    }catch(e){
+        res.status(500);
+        res.send(e.message);
+    }
+};
+
+const getProvinces = async (req, res) =>{
+    try{
+        const result = await db.query("SELECT province_id, province_name FROM province");
+        res.json(result);
+    }catch(e){
+        res.status(500);
+        res.send(e.message);
+    }
+};
+
+const getCantons = async (req, res) =>{
+    try{
+        const result = await db.query("SELECT * FROM canton");
+        res.json(result);
+    }catch(e){
+        res.status(500);
+        res.send(e.message);
+    }
+};
+
+const getDistrics = async (req, res) =>{
+    try{
+        const result = await db.query("SELECT * FROM distric");
+        res.json(result);
+    }catch(e){
+        res.status(500);
+        res.send(e.message);
+    }
+};
 
 const createGender = async (req, res) =>{
     try{
@@ -22,6 +62,6 @@ const createGender = async (req, res) =>{
 }; 
 
 export default{
-    getGender,
-    createGender
+    getGenders, getUniversities, getProvinces, getCantons,
+    getDistrics, createGender
 }

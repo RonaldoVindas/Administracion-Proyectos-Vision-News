@@ -4,8 +4,12 @@ import controller from "../Controller/cataloge.controller.js"
 
 const router = Router();
 
-router.get('/ggender', controller.getGender);
-router.post('/pgender', controller.createGender);
+router.get('/genders', controller.getGenders);
+router.get('/universities', controller.getUniversities);
+router.get('/provinces', controller.getProvinces);
+router.get('/cantons', controller.getCantons);
+router.get('/districs', controller.getDistrics);
+router.post('/', controller.createGender);
 
 
 export default router;

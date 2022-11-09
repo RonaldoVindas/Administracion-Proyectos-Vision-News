@@ -105,13 +105,7 @@ function App() {
           </div>
 
           <div className="firstColumn thirdRow">
-            <label className="styleFont">Segundo Apellido</label><br/>
-            <input type="text" id="" name=""/>
-          </div>
-
-
-          <div className="secondColumn firstRow">
-            <label className="styleFont">Género</label><br/>
+          <label className="styleFont">Género</label><br/>
             <select className='select'  onChange={selectGender} value={info.gender}>
               {genders.length === 0 && console.log("Cargando")}
               {genders.map((options) => (
@@ -122,8 +116,9 @@ function App() {
             </select>
           </div>
 
-          <div className="secondColumn secondRow">
-            <label className="styleFont">Universidad</label><br/>
+
+          <div className="secondColumn firstRow">
+          <label className="styleFont">Universidad</label><br/>
             <select className='select' onChange={selectUniversity} value={info.Univesity}>
             {universities.length === 0 && console.log("Cargando")}
               {universities.map((options) => (
@@ -134,8 +129,8 @@ function App() {
             </select>
           </div>
 
-          <div className="secondColumn thirdRow">
-            <label className="styleFont">Dirección</label><br/>
+          <div className="secondColumn secondRow">
+          <label className="styleFont">Dirección</label><br/>
             <select className='select2'>
             {provinces.length === 0 && console.log("Cargando")}
               {provinces.map((options) => (
@@ -150,6 +145,10 @@ function App() {
             <select className='select2 selectPos'>
               <option value = '1'>Sabanilla</option>
             </select>
+          </div>
+
+          <div className="secondColumn thirdRow">
+            <textarea type="textarea"></textarea>
           </div>
 
           <div className="thirdColumn firstRow">

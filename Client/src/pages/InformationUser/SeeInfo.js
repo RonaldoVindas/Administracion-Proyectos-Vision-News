@@ -43,7 +43,7 @@ function SeeInfo(){
           </div>
 
           <div className = "buttonDiv">
-            <Link  to = "/UpdateInfo">EDITAR PERFIL</Link>
+            <Link to = "/UpdateInfo"><button className="button button1">EDITAR PERFIL</button></Link>
             <br/>
             <button className="button button2">NOTICIA FAVORITAS</button>
             <br/>

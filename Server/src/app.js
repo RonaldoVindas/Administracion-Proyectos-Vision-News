@@ -1,7 +1,10 @@
 
 import express from "express";
 import morgan from "morgan";
-import Routes from "./Routes/cataloge.routes.js";
+
+//Routes import
+import cataloge from "./Routes/cataloge.routes.js";
+import news from "./Routes/news.routes.js";
 
 const app = express();
 
@@ -12,9 +15,17 @@ app.set("port", process.env.PORT || port);
 //middlewares
 // app.use(morgan("start"));
 app.use(express.json());
+//Cors
+import cors from "cors" 
+const options = {
+    origin: 'http://localhost:3000',
+    }
+    app.use(cors(options))
+
 
 //routes
-app.use(Routes);
+app.use(cataloge);
+app.use(news);
 
 
 //starting server

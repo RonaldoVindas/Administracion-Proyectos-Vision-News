@@ -6,6 +6,7 @@ const db = createPool({
     host: "b8urwchzonmvqpdfx6hx-mysql.services.clever-cloud.com",
     user: "u4fovajncfqxqamj",
     password: "qcX9rHnAONafBjDiHwtb",
+    port: 3306,
     database: "b8urwchzonmvqpdfx6hx"
 });
 

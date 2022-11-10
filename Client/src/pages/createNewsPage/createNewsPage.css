@@ -1,0 +1,77 @@
+
+  .containerCN{
+    background-color: aquamarine;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 10% 10% 80%;
+    grid-template-areas:  "header"
+                          "title"
+                          "formg";
+  }
+  
+  .headerCN{
+    background-color: #D53143;
+    grid-area: header;
+  }
+
+  .titleCN{
+    background-color: #ffffff;
+    grid-area: title;
+  }
+
+  .formContainer{
+    grid-area: formg;
+    background-color: yellow;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 30% 50% 20%;
+    grid-template-areas:"iname itype ifile"
+                        "itarea itarea itarea"
+                        "btn btn btn";
+  position: relative;
+  }
+
+  .inputnameCN{
+    background-color: #ffffff;
+    grid-area: iname;
+    text-align: center;
+  }
+
+  .inputnameCN input{
+    width: 80%;
+    height: 30%;
+    text-align: center;
+    font-size:x-large;
+  }
+
+  .itypeCN{
+    background-color: #ffffff;
+    grid-area: itype;
+    text-align: center;
+  }
+
+  .inpfileCN{
+    background-color: #ffffff;
+    grid-area: ifile;
+    text-align: center;
+  }
+
+  .itxtareaCN{
+    background-color: #ffffff;
+    grid-area: itarea;
+    text-align: center;
+  }
+
+  .itxtareaCN textarea{
+    font-size: x-large;
+  }
+
+  .ibtnCN{
+    background-color: #ffffff;
+    grid-area: btn;
+    text-align: center;
+  }
+  

@@ -61,7 +61,17 @@ const createGender = async (req, res) =>{
     }
 }; 
 
+const getNewsType = async (req, res) =>{
+    try{
+        const [rows] = await db.query("SELECT * FROM news_type");
+        res.json(rows);
+    }catch(e){
+        res.status(500);
+        res.send(e.message);
+    }
+};
+
 export default{
     getGenders, getUniversities, getProvinces, getCantons,
-    getDistrics, createGender
+    getDistrics, createGender, getNewsType
 }

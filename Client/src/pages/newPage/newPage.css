@@ -1,35 +1,3 @@
-
-  .container{
-    background-color: aquamarine;
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 80% 20%;
-    grid-template-rows: 20% 80%;
-    grid-template-areas:  "header header"
-                          "body navbar";
-  }
-  
-  .header{
-    background-color: #D53143;
-    grid-area: header;
-  }
-  
-  .navbar{
-    background-color: #773344;
-    grid-area: navbar;
-  }
-  
-  .content{
-  background-color: white;
-  grid-area: body;
-  justify-content: space-between;
-  display: flex;
-  flex-wrap: wrap;
-  max-height: 100vh;
-  overflow-y: scroll;
-  }
-
   .card{
     margin: 5px;
     width: 345px;

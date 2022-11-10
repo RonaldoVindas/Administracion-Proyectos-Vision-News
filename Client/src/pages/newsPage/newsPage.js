@@ -26,18 +26,18 @@ const NewsPage = ()=>{
                     return (
                         <Link to={`/new/${eachNews.news_id}`}>
                         <div className="card">
-                        <div className="titulo">
+                        <div className="title">
                             <h1>{eachNews.title}</h1>
 
                         </div>
-                        <div className="cuerpo">
+                        <div className="body">
                             <h1>{eachNews.photo}</h1>
                             <h2>{eachNews.news_body}</h2>
                             <h2>{eachNews.university_id}</h2>
                             <h2>{eachNews.newstype_id}</h2>
                         </div>
 
-                        <div className="pie">
+                        <div className="footer">
                             <h2>{eachNews.release_date} </h2>
                         </div>
                         </div>

@@ -9,6 +9,7 @@ router.get('/universities', controller.getUniversities);
 router.get('/provinces', controller.getProvinces);
 router.get('/cantons', controller.getCantons);
 router.get('/districs', controller.getDistrics);
+router.get('/ntypes', controller.getNewsType)
 router.post('/', controller.createGender);
 
 

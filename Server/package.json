@@ -12,8 +12,12 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "cloudinary": "^1.32.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "formik": "^2.2.9",
+    "fs-extra": "^10.1.0",
     "morgan": "^1.10.0",
     "mysql2": "^3.0.0-rc.1"
   },

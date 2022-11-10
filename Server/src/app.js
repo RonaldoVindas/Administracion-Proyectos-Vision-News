@@ -1,6 +1,8 @@
 
 import express from "express";
 import morgan from "morgan";
+import fileUpload from "express-fileupload";
+
 
 //Routes import
 import cataloge from "./Routes/cataloge.routes.js";
@@ -21,7 +23,10 @@ const options = {
     origin: 'http://localhost:3000',
     }
     app.use(cors(options))
-
+app.use(fileUpload({
+    useTempFiles:true,
+    tempFileDir: './upload'
+}));
 
 //routes
 app.use(cataloge);

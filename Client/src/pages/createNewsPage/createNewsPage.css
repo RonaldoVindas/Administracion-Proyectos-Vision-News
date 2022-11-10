@@ -20,9 +20,12 @@
     grid-area: title;
   }
 
-  .formContainer{
+  .formikform{
     grid-area: formg;
     background-color: yellow;
+  }
+
+  .formnews{
     height: 100%;
     width: 100%;
     display: grid;
@@ -53,10 +56,42 @@
     text-align: center;
   }
 
+  .itypeCN label{
+   font-size: x-large;
+  }
+
+  .itypeCN select{
+    width: 50%;
+    height: 20%;
+    text-align: center;
+    font-size: x-large;
+    border-radius: 10px;
+    background-color: #D53143;
+    color: #ffffff;
+  }
+
   .inpfileCN{
     background-color: #ffffff;
     grid-area: ifile;
     text-align: center;
+  }
+
+  .inpfileCN input{
+    height: 30%;
+    width: 80%;
+    font-size:larger;
+  }
+
+  .inpfileCN label{
+    font-size:x-large;
+  }
+
+  .inpfileCN input::-webkit-file-upload-button{
+    border-radius: 10px;
+    width: 30%;
+    height: 60%;
+    background-color: #D53143;
+    color: #ffffff;
   }
 
   .itxtareaCN{
@@ -73,5 +108,14 @@
     background-color: #ffffff;
     grid-area: btn;
     text-align: center;
+  }
+
+  .ibtnCN button{
+    background-color: #D53143;
+    border-radius: 10px;
+    color: #ffffff;
+    height: 30%;
+    width: 10%;
+    font-size: x-large;
   }
   

@@ -5,6 +5,7 @@ import morgan from "morgan";
 //Routes import
 import cataloge from "./Routes/cataloge.routes.js";
 import news from "./Routes/news.routes.js";
+import person from "./Routes/person.routes.js";
 
 const app = express();
 
@@ -26,6 +27,7 @@ const options = {
 //routes
 app.use(cataloge);
 app.use(news);
+app.use(person);
 
 
 //starting server

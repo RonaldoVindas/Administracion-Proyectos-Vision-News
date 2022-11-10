@@ -1,10 +1,12 @@
 import './UpdateInfo.css';
 import React, {useState, useEffect}from 'react';
+import { NavLink, useNavigate } from 'react-router-dom'
 import axios from "axios";
 
 function App() {
 
   const url = "http://localhost:4000";
+  const navigate = useNavigate(); 
 
 
   const getGenders = async () =>{
@@ -53,8 +55,12 @@ function App() {
     dni: 117870341,
     phone: 86784841,
     email: "h@gmail.com",
-    gender: 0,
-    Univesity: 0,
+    direction: 'Palo de mangos',
+    provinces: 0,
+    canton: 0,
+    distric:0,
+    gender: 1,
+    Univesity: 2,
     Direccion: "SBD"
   });
 
@@ -69,6 +75,17 @@ function App() {
     setInfo({... info,
             Univesity: value});
   };
+
+  function guardar(){
+    //Codigo para actualizar
+    navigate("/SeeInfo");
+    console.log(info)
+
+  }
+
+  const changeHandler = (event) => {
+    setInfo({ ...info, [event.target.name]: event.target.value });
+  }
 
 
   return (
@@ -87,7 +104,7 @@ function App() {
 
           <div className = "point">
             <label className="styleFont">Puntos</label>
-            <label className="styleFont pos">0</label>
+            <label className="styleFont pos">{info.points}</label>
           </div>
           
 
@@ -96,12 +113,12 @@ function App() {
         <div className='mediumUpdate'>
           <div className="firstColumn firstRow">
             <label className="styleFont">Nombre</label><br/>
-            <input type="text" id="" name=""/>
+            <input onChange={changeHandler} type="text" id="name" name="name" value={info.name}/>
           </div>
 
           <div className="firstColumn secondRow">
             <label className="styleFont">Primer Apellido</label><br/>
-            <input type="text" id="" name=""/>
+            <input onChange={changeHandler} type="text" id="lastName" name="lastName" value={info.lastName}/>
           </div>
 
           <div className="firstColumn thirdRow">
@@ -148,25 +165,25 @@ function App() {
           </div>
 
           <div className="secondColumn thirdRow">
-            <textarea type="textarea"></textarea>
+            <textarea onChange={changeHandler} id="direction" name="direction" type="textarea" rows="5" cols="50"  >{info.direction}</textarea>
           </div>
 
           <div className="thirdColumn firstRow">
             <label className="styleFont">Cédula</label><br/>
-            <input type="text" id="" name=""/>
+            <input onChange={changeHandler} type="text" id="dni" name="dni" value={info.dni}/>
           </div>
           <div className="thirdColumn secondRow">
             <label className="styleFont">Teléfono</label><br/>
-            <input type="text" id="" name=""/>
+            <input onChange={changeHandler} type="text" id="phone" name="phone" value={info.phone}/>
           </div>
           <div className="thirdColumn thirdRow">
             <label className="styleFont">Correo Electrónico</label><br/>
-            <input type="text" id="" name=""/>
+            <input onChange={changeHandler} type="text" id="email" name="email" value={info.email}/>
           </div>
         </div>
 
         <div className="bottom">
-          <button className='button1 buttonG2'>Guardar Cambios</button>
+          <button onClick={guardar} className='button1 buttonG2'>Guardar Cambios</button>
         </div>
     </div>
   );

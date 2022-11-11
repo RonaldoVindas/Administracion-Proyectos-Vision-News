@@ -1,0 +1,51 @@
+
+.sing-in-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-height: 10vh;
+    justify-content: center;
+}
+
+.sign-in-subContainer > div{
+    width: 50%;
+}
+
+.sign-in-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sign-in-button {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 600px) {
+    .sing-in-container {
+        padding: 1rem;
+        margin: 0.5rem;
+    }
+}
+
+h2{
+    padding-top: 40px;
+}
+
+.combo-forms {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+select {
+    margin: 1rem 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 150px;
+    border: none;
+    border-radius: 10px;
+    background-color: #F1F1F1;
+}

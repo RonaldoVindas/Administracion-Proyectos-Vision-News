@@ -20,8 +20,20 @@ const updatePerson = async (req, res) =>{
         res.status(500);
         res.send(e.message);
     }
-}; 
+};
+
+const login = async (req, res) =>{
+    try{
+        const email = req.query.email;
+        const password = req.query.password;
+        const result = await db.query('SELECT * FROM person WHERE email = ? AND password = ?', [email, password]);
+        res.json(result);
+    }catch(e){
+        res.status(500);
+        res.send(e.message);
+    }
+};
 
 export default{
-    updatePerson, getPersons
+    updatePerson, getPersons, login
 }

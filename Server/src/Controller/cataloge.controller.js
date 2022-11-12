@@ -32,7 +32,8 @@ const getProvinces = async (req, res) =>{
 
 const getCantons = async (req, res) =>{
     try{
-        const result = await db.query("SELECT * FROM canton");
+        const provinceId = req.query.provinceId;
+        const result = await db.query("SELECT canton_id, canton_name FROM canton WHERE provice_ID = ?",[provinceId]);
         res.json(result);
     }catch(e){
         res.status(500);
@@ -40,12 +41,14 @@ const getCantons = async (req, res) =>{
     }
 };
 
-const getDistrics = async (req, res) =>{
+const getDistricts = async (req, res) =>{
     try{
-        const result = await db.query("SELECT * FROM distric");
+        const cantonId = req.query.cantonId;
+        const result = await db.query("SELECT distric_id, distric_name FROM distric WHERE canton_ID = ?",[cantonId]);
         res.json(result);
     }catch(e){
         res.status(500);
+        console.log(e)
         res.send(e.message);
     }
 };
@@ -73,5 +76,5 @@ const getNewsType = async (req, res) =>{
 
 export default{
     getGenders, getUniversities, getProvinces, getCantons,
-    getDistrics, createGender, getNewsType
+    getDistricts, createGender, getNewsType
 }

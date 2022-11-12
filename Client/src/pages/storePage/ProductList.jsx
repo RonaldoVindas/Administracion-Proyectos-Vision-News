@@ -1,6 +1,8 @@
 
-import React from 'react'
-import {products} from './data.js'
+import React, {useState, useEffect}from 'react';
+//import {Link} from 'react-router-dom'
+//import {products} from './data.js'
+import axios from "axios";
 import ProductItem from './ProductItem'
 import styled from 'styled-components';
 
@@ -38,13 +40,32 @@ margin: 0 1em;
 padding: 0.25em 1em;
 `;
 
+
+
+
 const ProductList = () => {
+  const url = "http://localhost:4000";
+  
+  const getProducts = async () => {
+    await axios.get(url + "/gproducts")
+                    .then(response => {
+                      setProducts(response.data[0]);
+                    }).catch(err => {
+                      console.log(err)
+                    });
+  };
+  
+  const [products, setProducts] = useState([]);
+  
+  useEffect (() => {
+    getProducts();
+  }, []);
   return (
     <div>
       <Data> ¡Bienvenido usuario! su cantidad de puntos para canjear son: [] <Button>Regreso</Button></Data>
       <Container>
-      {products.map((item) => (
-        <ProductItem item={item} key={item.id} />
+      {products.map((item) => ( //procesar todo lo que habia en la base
+        <ProductItem item={item} key={item.product_id} /> // darle formato 
       ))}
 
       </Container>

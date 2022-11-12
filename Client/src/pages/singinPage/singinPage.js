@@ -53,7 +53,9 @@ const SinginPage = (props) => {
     const getProvinces = async () =>{
         await axios.get(url + "/provinces")
             .then(response => {
+                const pro = response.data[0][0].province_id;
                 setProvinces(response.data[0]);
+                getCantons(pro)
             }).catch(err => {
                 console.log(err)
             });
@@ -63,13 +65,9 @@ const SinginPage = (props) => {
         await axios.get(url + "/cantons",{params:{provinceId:value}})
             .then(response => {
                 const can = response.data[0][0].canton_id;
+                setCanton(can)
                 setCantons(response.data[0]);
-                axios.get(url + "/districts",{params:{cantonId:can}})
-                    .then(response2 => {
-                        setDistricts(response2.data[0]);
-                    }).catch(err => {
-                        console.log(err)
-                    });
+                getDistricts(can)
             }).catch(err => {
                 console.log(err)
             });
@@ -79,6 +77,8 @@ const SinginPage = (props) => {
     const getDistricts = async (value) =>{
         await axios.get(url + "/districts",{params:{cantonId:value}})
             .then(response => {
+                const dis = response.data[0][0].distric_id
+                setDistrict(dis)
                 setDistricts(response.data[0]);
             }).catch(err => {
                 console.log(err)
@@ -103,7 +103,6 @@ const SinginPage = (props) => {
         getGenders();
         getUniversities();
         getProvinces();
-        getCantons(1)
 
     }, []);
 

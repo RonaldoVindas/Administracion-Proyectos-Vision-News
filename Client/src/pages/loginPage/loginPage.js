@@ -51,6 +51,23 @@ const LoginPage = (props) => {
                 })
     }
 
+    async function continuar(){
+        cookies.set('first_name',       "",       {path: "/"});
+        cookies.set('last_name',       "",       {path: "/"});
+        cookies.set('email',        "",       {path: "/"});
+        cookies.set('id_person',   "",  {path: "/"});
+        cookies.set('editor',         "",        {path: "/"});
+        cookies.set('genre_id',         "",        {path: "/"});
+        cookies.set('persontype_id',         "",        {path: "/"});
+        cookies.set('university_id',         "",        {path: "/"});
+        cookies.set('province_id',         "",        {path: "/"});
+        cookies.set('points',         "",        {path: "/"});
+        cookies.set('phone',         "",        {path: "/"});
+        cookies.set('birth_day',         "",        {path: "/"});
+        cookies.set('direction',         "",        {path: "/"});
+        window.location.href="/news";
+    }
+
     return (
 
         <div>
@@ -65,7 +82,7 @@ const LoginPage = (props) => {
                 </form>
                 <div>
                     <Link to = '/signIn'><button className="link-btn">CREAR CUENTA</button></Link>
-                    <button className="link-btn" onClick={() => props.onFormSwitch('register')}>CONTINUAR</button>
+                    <button className="link-btn" onClick={continuar}>CONTINUAR</button>
 
                 </div>
             </div>

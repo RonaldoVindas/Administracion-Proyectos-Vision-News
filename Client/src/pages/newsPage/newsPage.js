@@ -11,6 +11,7 @@ const NewsPage = ()=>{
         fetch('http://localhost:4000/gnews').then(res => res.json()).then(rows => setNews(rows));
     }
 
+
     loadNews();
     return (
     <div className="App">
@@ -23,23 +24,27 @@ const NewsPage = ()=>{
             </div>
             <div className='content'>
             {news.map(eachNews =>{
+                
                     return (
                         <Link to={`/new/${eachNews.news_id}`}>
                         <div className="card">
-                        <div className="title">
-                            <h1>{eachNews.title}</h1>
+                            <div className="title">
+                                <h1>{eachNews.title}</h1>
 
-                        </div>
-                        <div className="body">
-                            <h1>{eachNews.photo}</h1>
-                            <h2>{eachNews.news_body}</h2>
-                            <h2>{eachNews.university_id}</h2>
-                            <h2>{eachNews.newstype_id}</h2>
-                        </div>
+                            </div>
+                            <div className="body">
+                                <div>
+                                    <img src={eachNews.photo} alt={eachNews.title} />
+                                </div>
+                                <div>
+                                    <h2>{eachNews.acronym}</h2>
+                                    <h2>{eachNews.name}</h2>
+                                </div>
+                            </div>
 
-                        <div className="footer">
-                            <h2>{eachNews.release_date} </h2>
-                        </div>
+                            <div className="footer">
+                                <h2>{eachNews.release_date} </h2>
+                            </div>
                         </div>
                         </Link>
                     )

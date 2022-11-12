@@ -5,7 +5,7 @@ import fs from 'fs-extra'
 //Get all the news from de database
 export const getNews = async (req, res) =>{
     try{
-        const [rows] = await db.query("SELECT * FROM news");
+        const [rows] = await db.query("SELECT news.news_id, news.title, news.photo, news.release_date, university.acronym, news_type.name FROM news INNER JOIN university ON news.university_id = university.university_id INNER JOIN news_type ON news.newstype_id = news_type.newsType_id;");
         res.json(rows);
     }catch(e){
         res.status(500);

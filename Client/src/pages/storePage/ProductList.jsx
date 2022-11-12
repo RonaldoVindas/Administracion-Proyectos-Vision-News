@@ -42,11 +42,11 @@ padding: 0.25em 1em;
 
 
 
-
 const ProductList = () => {
   const url = "http://localhost:4000";
-  
+
   const getProducts = async () => {
+    
     await axios.get(url + "/gproducts")
                     .then(response => {
                       setProducts(response.data[0]);
@@ -60,6 +60,7 @@ const ProductList = () => {
   useEffect (() => {
     getProducts();
   }, []);
+
   return (
     <div>
       <Data> ¡Bienvenido usuario! su cantidad de puntos para canjear son: [] <Button>Regreso</Button></Data>

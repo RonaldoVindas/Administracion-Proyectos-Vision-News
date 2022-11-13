@@ -50,3 +50,9 @@ button {
   cursor: pointer;
   color: white;
 }
+
+.header2{
+  background-color: #D53143;
+  grid-area: header;
+  height: 96.86px;
+}

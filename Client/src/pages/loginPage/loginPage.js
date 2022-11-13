@@ -71,6 +71,9 @@ const LoginPage = (props) => {
     return (
 
         <div>
+            <div className='header2'>
+
+            </div>
             <div className="auth-form-container">
                 <h2>INICIO DE SESIÓN</h2>
                 <form className="login-form" onSubmit={handleSubmit}>

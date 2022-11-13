@@ -149,8 +149,10 @@ const SinginPage = (props) => {
     return (
 
         <div>
-            <h2 align="center">REGISTRARSE</h2>
+            <div className='header2'>
 
+            </div>
+            <h2 align="center">REGISTRARSE</h2>
             <div className="sing-in-container">
                 <div className="sign-in-subContainer" >
                     <div className="auth-form-container" onSubmit={handleSubmit}>

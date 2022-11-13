@@ -36,6 +36,7 @@ app.use(cataloge);
 app.use(news);
 app.use(person);
 app.use(filters);
+app.use(store);
 
 
 //starting server

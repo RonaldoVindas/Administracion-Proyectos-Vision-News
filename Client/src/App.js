@@ -27,6 +27,7 @@ function App() {
       <Route path="/SeeInfo" element={<SeeInfo/>}/>
       <Route path="/filterPage" element={<FilterPage/>}/>
       <Route path="/filternewsPage/:filtro/:f_id" element={<FilternewsPage/>}/>
+        <Route path="/storePage" element={<StorePage/>}/>
     </Routes>
   );
 }

@@ -19,6 +19,7 @@ const SinginPage = (props) => {
     const [province, setProvince] = useState('1');
     const [canton, setCanton] = useState('1');
     const [district, setDistrict] = useState('1');
+    const [image, setImage] = useState();
 
     const [genders, setGenders] = useState([]);
     const [universities, setUniversities] = useState([]);
@@ -115,19 +116,25 @@ const SinginPage = (props) => {
             password: pass,
             first_name: name,
             last_name: lastname,
-            photo: "CAMBIAR",
+            image :image,
+            //photo: "CAMBIAR",
             birth_day: birthday,
             direction: address,
             phone: phone,
             gender_id: gender,
             province_id: province,
             university_id: university,
-            fec_creation: "2022/11/12", //CAMBIAR
-            user_creation: name
-
+            fec_creation: "2022/11/12",
+            user_creation: name,
+            editor: 0
         }
         console.log(values)
-        await axios.post(url + '/person/new', values)
+
+        await axios.post(url + '/person/new', values,{
+            headers:{
+                "Content-Type": "multipart/form-data",
+            },
+        })
             .then(response => {
                 console.log("RESPUESTA")
                 console.log(response)
@@ -234,7 +241,7 @@ const SinginPage = (props) => {
                         <label htmlFor="date">Fecha de Nacimiento</label>
                         <input value={birthday} onChange={(e) => setBirthday(e.target.value)} type="date" id="date" name="date" />
                         <label htmlFor="address">Imagen</label>
-                        <input value={address} onChange={(e) => setAddress(e.target.value)} type="address" id="address2" name="address" />
+                        <input name ="photo" type="file" id="image" onChange={(e) => setImage(e.target.files[0])}/>
                     </form>
                 </div>
 

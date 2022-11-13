@@ -1,5 +1,7 @@
 
 import {db} from "../database.js"
+import {uploadImage} from "../libs/cloudinary.js";
+import fs from "fs-extra";
 
 const getPersons = async (req, res) =>{
     try{
@@ -37,7 +39,19 @@ const login = async (req, res) =>{
 const newPerson = async (req, res) =>{
     try{
         const info = req.body;
+        let image = null;
         console.log(info)
+        if (req.files.image){
+            console.log("IMAGEN")
+            const result = await uploadImage(req.files.image.tempFilePath);
+            await fs.remove(req.files.image.tempFilePath)
+            image = result.secure_url
+        } else {
+            console.log("MAMANDO")
+        }
+
+
+        info.photo = image;
         console.log(info)
         const result = await db.query('INSERT INTO person set ?', [info]);
         res.json(result);

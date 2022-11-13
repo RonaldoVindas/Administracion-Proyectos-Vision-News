@@ -34,7 +34,7 @@ const FilternewsPage = ()=>{
             <div className='content'>
             
             {news.map(eachNews =>{
-                if (news.indexOf(eachNews)== 0){
+                if (news.indexOf(eachNews)=== 0){
                     return (
                         <Link className='cardsLink' to={`/new/${eachNews.news_id}`}>
                         <div className="bcard">

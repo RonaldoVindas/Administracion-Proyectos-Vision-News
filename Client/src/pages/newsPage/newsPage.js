@@ -16,12 +16,21 @@ const NewsPage = ()=>{
         return newDate.toDateString();    
     }
 
+    function extracTextPiece(text){
+        if (text.length <= 150 ){ 
+            return text; 
+        }else{
+            let newText = text.substring(0, 150);
+            return newText;
+        }
+    }
+
     loadNews();
     return (
     <div className="App">
         <div className='container'>
             <div className='header'>
-                header
+                <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
             </div>
             <div className='navbar'>
                 navbar
@@ -29,14 +38,14 @@ const NewsPage = ()=>{
             <div className='content'>
             
             {news.map(eachNews =>{
-                if (news.indexOf(eachNews)== 0){
+                if (news.indexOf(eachNews)=== 0){
                     return (
                         <Link className='cardsLink' to={`/new/${eachNews.news_id}`}>
                         <div className="bcard">
                             <div className='bcimageContainer'>
                                     <img src={eachNews.photo} alt={eachNews.title} />
                             </div>
-                            
+
                             <div className="bctitle">
                                 <div className='bctitleContainer'>
                                     <h2>{eachNews.title}</h2>
@@ -49,7 +58,7 @@ const NewsPage = ()=>{
 
                             <div className="bcbody">
                                 <div className='bctextContainer'>
-                                    <h2>Cuerpo</h2>
+                                    <h2>{extracTextPiece(eachNews.news_body)}...</h2>
                                 </div>
                             </div>
 

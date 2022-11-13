@@ -28,7 +28,8 @@ const NewPage = ()=>{
 
             </div>
             <div className="cuerpo">
-                <h1>{news.photo}</h1>
+              
+              <img src={news.photo} ></img>
                 <h2>{news.news_body}</h2>
                 <h2>{news.university_id}</h2>
                 <h2>{news.newstype_id}</h2>

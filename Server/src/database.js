@@ -7,7 +7,8 @@ const db = createPool({
     user: "u4fovajncfqxqamj",
     password: "qcX9rHnAONafBjDiHwtb",
     port: 3306,
-    database: "b8urwchzonmvqpdfx6hx"
+    database: "b8urwchzonmvqpdfx6hx",
+    connectionLimit: 2
 });
 
 //export default db;

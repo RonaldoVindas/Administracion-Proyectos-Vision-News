@@ -64,7 +64,7 @@ export const getNewsCalification = async (req, res) =>{
 //Get new comments
 export const getNewsComments = async (req, res) =>{
     try{
-        const [rows] = await db.query("SELECT * FROM comment WHERE newsID = ?", [req.params.id]);
+        const [rows] = await db.query("SELECT comment.body,person.photo FROM comment INNER JOIN person ON comment.user_id = person.id_person WHERE newsID = ?", [req.params.id]);
         res.json(rows);
     }catch(e){
         res.status(500);

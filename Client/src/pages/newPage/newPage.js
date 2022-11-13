@@ -1,51 +1,55 @@
-import {Link, useParams} from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useState } from 'react';
-import {Form, Formik} from 'formik'
+import { Form, Formik } from 'formik'
 import axios from 'axios';
 import './newPage.css'
 
-const NewPage = ()=>{
+const NewPage = () => {
 
-    const [news, setNews] = useState({});
-    const [comments, setComments] = useState([]);
-    const [calification, setCalifications] = useState([]);
+  const [news, setNews] = useState({});
+  const [comments, setComments] = useState([]);
+  const [calification, setCalifications] = useState([]);
 
-    const { new_id } = useParams(); 
+  const { new_id } = useParams();
 
-    const loadNew = ()=>{
-        fetch(`http://localhost:4000/gnewsID/${new_id}`).then(response => response.json()).then(news => setNews(news));
-    }
+  const loadNew = () => {
+    fetch(`http://localhost:4000/gnewsID/${new_id}`).then(response => response.json()).then(news => setNews(news));
+  }
 
-    const loadComments = ()=>{
-      fetch(`http://localhost:4000/gnewsComments/${new_id}`).then(response => response.json()).then(comments => setComments(comments));
-    }
+  const loadComments = () => {
+    fetch(`http://localhost:4000/gnewsComments/${new_id}`).then(response => response.json()).then(comments => setComments(comments));
+  }
 
-    const loadCalifications = ()=>{
-      fetch(`http://localhost:4000/gnewsCalification/${new_id}`).then(response => response.json()).then(calification => setCalifications(calification));
-    }
+  const loadCalifications = () => {
+    fetch(`http://localhost:4000/gnewsCalification/${new_id}`).then(response => response.json()).then(calification => setCalifications(calification));
+  }
 
-    function getCalification(){
-      let newCalification = 0;
-      calification.map(eachComment =>{
-          newCalification = newCalification+eachComment.value; 
-      })
-      newCalification = newCalification/calification.length;
-      return newCalification;
-    }
+  function getCalification() {
+    let newCalification = 0;
+    calification.map(eachComment => {
+      newCalification = newCalification + eachComment.value;
+    })
+    newCalification = newCalification / calification.length;
+    return newCalification;
+  }
 
-    loadNew();
-    loadComments();
-    loadCalifications();
+  loadNew();
+  loadComments();
+  loadCalifications();
 
-    return(
-      <div className='container'>
+  return (
+    <div className='container'>
 
-        <div className='header'>
-          <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
-        </div>
+      <div className='header'>
+        <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
+      </div>
 
-        <div className='navbar'>
+      <div className='navbar'>
+        <div className='newviewnavbar'>
           <div className='navbarNewView'>
+            <div className='porfileautorphoto'>
+              <img className='PAphoto' src={news.pphoto}></img>
+            </div>
             <div className='autorNameNewView'>
               <p>{news.first_name} {news.last_name} </p>
             </div>
@@ -63,77 +67,81 @@ const NewPage = ()=>{
             </div>
           </div>
         </div>
+      </div>
 
-        <div className='contentNewView'>
+      <div className='contentNewView'>
 
-          <div className="cardNewView">
+        <div className="cardNewView">
 
-              <div className="imgNewView">
-                <img src={news.photo} alt={news.title}/>
+          <div className="imgNewView">
+            <img className="postimg" src={news.photo} alt={news.title} />
+          </div>
+
+          <div className="titleNewView">
+            <h1>{news.title}</h1>
+          </div>
+
+          <div className="bodyNewView">
+            <h2>{news.news_body}</h2>
+          </div>
+
+          <div className="calificationAndLikeBarNewView">
+            <h2>Calificación: {getCalification()} de 5 estrellas</h2>
+            <button type="">Like</button>
+          </div>
+
+          <div className="commentsNewView">
+            <div className='innercommentsNewView'>
+
+
+              <b>Sección de comentarios</b>
+              <div className='commentsForm'>
+                <Formik
+                  initialValues={{
+                    newsId: news.news_id,
+                    body: "",
+                    user_id: "",
+
+                  }}
+
+                  onSubmit={async (values) => {
+                    try {
+                      await axios.post('http://localhost:4000/crtcomment', values);
+                    } catch (error) {
+                      console.log(error);
+                    }
+                  }}
+                >
+                  {({ handleChange, handleSubmit }) => (
+                    <Form className="commentFormikForm" onSubmit={handleSubmit}>
+                      <input name="body" type="text" placeholder='Titulo de la noticia' onChange={handleChange} />
+                      <button type="submit">Comentar</button>
+                    </Form>
+                  )}
+                </Formik>
               </div>
 
-              <div className="tituloNewView">
-                  <h1>{news.title}</h1>
-              </div>
-
-              <div className="cuerpoNewView">
-                  <h2>{news.news_body}</h2>
-              </div>
-
-              <div className="calificationAndLikeBarNewView">
-                  <h2>calificación: {getCalification()} de 5 estrellas</h2>
-                  <button type="">Like</button>
-              </div>
-
-              <div className="commentsNewView">
-
-                <div className='commentsForm'>
-                  <Formik 
-                    initialValues={{
-                      newsId: news.news_id,
-                      body: "",
-                      user_id: "",
-
-                    }}
-                    
-                    onSubmit={async (values) => {
-                      try {
-                          await axios.post('http://localhost:4000/crtcomment', values);
-                      } catch (error) {
-                          console.log(error);
-                      }
-                    }}
-                    >
-                    {({handleChange, handleSubmit}) =>(
-                      <Form className="commentFormikForm" onSubmit={handleSubmit}>
-                          <input name ="body" type="text" placeholder='Titulo de la noticia' onChange={handleChange}/>
-                          <button type="submit">Comentar</button>
-                      </Form>
-                    )}
-                  </Formik>
-                </div>
-
-                <div className='commentsGroup'>
-                  {comments.map(eachComment =>{
-                    return (
-                      <div className='commentBody'>
-                        <div className='imgComment'>
-                          
-                        </div>
-                        <div className='commentContent'>
-                          <p>{eachComment.body}</p>
-                        </div>
+              <div className='commentsGroup'>
+                {comments.map(eachComment => {
+                  return (
+                    <div className='commentBody'>
+                      <div className='imgComment'>
+                      <img className='comPhoto' src={eachComment.photo}></img>
                       </div>
-                    )     
+                      <div className='commentContent'>
+                        <p>{eachComment.body}</p>
+                      </div>
+                    </div>
+                  )
                 })
                 }
-                </div>
-
               </div>
+            </div>
           </div>
+        </div>
       </div>
     </div>
-    );
+  );
 }
 
 export default NewPage;

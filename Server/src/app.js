@@ -8,6 +8,7 @@ import fileUpload from "express-fileupload";
 import cataloge from "./Routes/cataloge.routes.js";
 import news from "./Routes/news.routes.js";
 import person from "./Routes/person.routes.js";
+import filters from "./Routes/filters.routes.js";
 import store from  "./Routes/store.routes.js";
 
 const app = express();
@@ -34,7 +35,6 @@ app.use(fileUpload({
 app.use(cataloge);
 app.use(news);
 app.use(person);
-app.use(store);
 
 
 //starting server

@@ -9,8 +9,10 @@ import NewPage from './pages/newPage/newPage.js';
 import CreateNews from './pages/createNewsPage/createNewsPage.js';
 import SeeInfo from "./pages/InformationUser/SeeInfo.js";
 import UpdateInfo from "./pages/InformationUser/UpdateInfo.js";
-import SinginPage from "./pages/singinPage/singinPage";
+import FilterPage from "./pages/filterPage/filterPage.js";
+import SinginPage from "./pages/singinPage/singinPage.js";
 import StorePage from "./pages/storePage/Home";
+import FilternewsPage from "./pages/filterNews/filternewsPage.js"
 
 
 function App() {
@@ -23,7 +25,6 @@ function App() {
       <Route path='/createNews' element={<CreateNews/>}/>
       <Route path="/UpdateInfo" element={<UpdateInfo/>}/>
       <Route path="/SeeInfo" element={<SeeInfo/>}/>
-      <Route path="/storePage" element={<StorePage/>}/>
     </Routes>
   );
 }

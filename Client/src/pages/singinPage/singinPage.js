@@ -2,6 +2,7 @@ import  "../singinPage/singinPage.css";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import React, {useState, useEffect}from 'react';
+import swal from "sweetalert";
 
 
 const SinginPage = (props) => {
@@ -106,6 +107,45 @@ const SinginPage = (props) => {
 
     }, []);
 
+    async function onSubmit() {
+
+        const values = {
+            id_person: id,
+            email: email,
+            password: pass,
+            first_name: name,
+            last_name: lastname,
+            photo: "CAMBIAR",
+            birth_day: birthday,
+            direction: address,
+            phone: phone,
+            gender_id: gender,
+            province_id: province,
+            university_id: university,
+            fec_creation: "2022/11/12", //CAMBIAR
+            user_creation: name
+
+        }
+        console.log(values)
+        await axios.post(url + '/person/new', values)
+            .then(response => {
+                console.log("RESPUESTA")
+                console.log(response)
+                if(response.status === 200){
+                    swal("Registro completado","" ,"success").then((value) => {
+                        window.location.href="/";
+                    })
+                }else{
+                    swal("Error al registrar","" ,"warning")
+                }
+            })
+
+            .catch(error =>{
+                swal("Error al registrar","" ,"warning")
+                console.log(error);
+            })
+    }
+
     return (
 
         <div>
@@ -149,7 +189,7 @@ const SinginPage = (props) => {
                                 {universities.length === 0 && console.log("Cargando")}
                                 {universities.map((options) => (
                                     <option key={options.acronym} value={options.university_id}>
-                                        {`${options.name}(${options.acronym})`}
+                                        {`${options.name} (${options.acronym})`}
                                     </option>
                                 ))}
                             </select>
@@ -199,7 +239,7 @@ const SinginPage = (props) => {
             </div>
             <div className="sing-in-container">
                 <div className="sign-in-button">
-                    <button type="submit">REGISTRARSE</button>
+                    <button onClick={onSubmit} type="submit">REGISTRARSE</button>
                 </div>
             </div>
 

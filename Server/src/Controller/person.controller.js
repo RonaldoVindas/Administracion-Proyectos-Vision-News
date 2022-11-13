@@ -34,6 +34,20 @@ const login = async (req, res) =>{
     }
 };
 
+const newPerson = async (req, res) =>{
+    try{
+        const info = req.body;
+        console.log(info)
+        console.log(info)
+        const result = await db.query('INSERT INTO person set ?', [info]);
+        res.json(result);
+    }catch(e){
+        console.log(e)
+        res.status(500);
+        res.send(e.message);
+    }
+};
+
 export default{
-    updatePerson, getPersons, login
+    updatePerson, getPersons, login, newPerson
 }

@@ -25,6 +25,8 @@ function App() {
       <Route path='/createNews' element={<CreateNews/>}/>
       <Route path="/UpdateInfo" element={<UpdateInfo/>}/>
       <Route path="/SeeInfo" element={<SeeInfo/>}/>
+      <Route path="/filterPage" element={<FilterPage/>}/>
+      <Route path="/filternewsPage/:filtro/:f_id" element={<FilternewsPage/>}/>
     </Routes>
   );
 }

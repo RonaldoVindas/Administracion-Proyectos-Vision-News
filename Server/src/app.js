@@ -35,6 +35,7 @@ app.use(fileUpload({
 app.use(cataloge);
 app.use(news);
 app.use(person);
+app.use(filters);
 
 
 //starting server

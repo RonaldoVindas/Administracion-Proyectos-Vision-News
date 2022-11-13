@@ -30,7 +30,7 @@ const LoginPage = (props) => {
                         cookies.set('email',        respuesta.email,       {path: "/"});
                         cookies.set('id_person',   respuesta.id_person,  {path: "/"});
                         cookies.set('editor',         respuesta.editor,        {path: "/"});
-                        cookies.set('genre_id',         respuesta.genre_id,        {path: "/"});
+                        cookies.set('gender_id',         respuesta.gender_id,        {path: "/"});
                         cookies.set('persontype_id',         respuesta.persontype_id,        {path: "/"});
                         cookies.set('university_id',         respuesta.university_id,        {path: "/"});
                         cookies.set('province_id',         respuesta.province_id,        {path: "/"});

@@ -3,6 +3,9 @@ import React, {useState, useEffect}from 'react';
 import {useNavigate } from 'react-router-dom'
 import axios from "axios";
 
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 function App() {
 
   const url = "http://localhost:4000";
@@ -36,6 +39,15 @@ function App() {
                     });
   };
 
+  const updateInfo = async () =>{
+    await axios.put(url + `/person/${info.dni}`, info)
+                    .then(response => {
+                      console.log(response)
+                    }).catch(err => {
+                      console.log(err)
+                    });
+  };
+
   const [genders, setGenders] = useState([]);
   const [universities, setUniversities] = useState([]);
   const [provinces, setProvinces] = useState([]);
@@ -48,38 +60,37 @@ function App() {
 
   //Informacion del usuario
   const[info, setInfo]=useState({
-    name: "Ford",
-    lastName: "Mustang",
-    secondSurname: "red",
-    points: 0,
-    dni: 117870341,
-    phone: 86784841,
-    email: "h@gmail.com",
-    direction: 'Palo de mangos',
-    provinces: 0,
-    canton: 0,
-    distric:0,
-    gender: 1,
-    Univesity: 2,
-    Direccion: "SBD"
+    name: cookies.get('first_name'),
+    lastName: cookies.get('last_name'),
+    email: cookies.get('email'),
+    dni: cookies.get('id_person'),
+    editor: cookies.get('editor'),
+    gender: cookies.get('gender_id'),
+    personType: cookies.get('personType_id'),
+    univesity: cookies.get('university_id'),
+    province: cookies.get('province_id'),
+    points: cookies.get('points'),
+    phone: cookies.get('phone'),
+    birthDay: cookies.get('birth_day'),
+    direction: cookies.get('direction')
   });
 
   const selectGender = (event) => {
     const value = event.target.value;
     setInfo({... info,
-            gender: value});
+            gender: Number(value)});
   };
 
   const selectUniversity = (event) => {
     const value = event.target.value;
     setInfo({... info,
-            Univesity: value});
+            Univesity: Number(value)});
   };
 
   function guardar(){
     //Codigo para actualizar
+    updateInfo();
     navigate("/SeeInfo");
-    console.log(info)
 
   }
 
@@ -89,13 +100,12 @@ function App() {
 
 
   return (
-    <div className="general">
+    <div className="containerUpdate">
         <nav className="nav">Barra general</nav>
 
-        <div className='top'>
+        <div className='topUpdate'>
           <label className="styleFontTitle">Editar Perfil</label>
-          <i className="fa-solid fa-user imageP"></i>
-
+          <img className="imageSee" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"/>
           {/* <div className="name">
             <input type="text" className="" id="" name="" />
             <input type="text" className="input2" id="" name=""  />
@@ -111,17 +121,17 @@ function App() {
         </div>
 
         <div className='mediumUpdate'>
-          <div className="firstColumn firstRow">
+          <div className="leftTop informationPos">
             <label className="styleFont">Nombre</label><br/>
             <input onChange={changeHandler} type="text" id="name" name="name" value={info.name}/>
           </div>
 
-          <div className="firstColumn secondRow">
+          <div className="leftMedium informationPos">
             <label className="styleFont">Primer Apellido</label><br/>
             <input onChange={changeHandler} type="text" id="lastName" name="lastName" value={info.lastName}/>
           </div>
 
-          <div className="firstColumn thirdRow">
+          <div className="leftBottom informationPos">
           <label className="styleFont">Género</label><br/>
             <select className='select'  onChange={selectGender} value={info.gender}>
               {genders.length === 0 && console.log("Cargando")}
@@ -134,7 +144,7 @@ function App() {
           </div>
 
 
-          <div className="secondColumn firstRow">
+          <div className="centerTop">
           <label className="styleFont">Universidad</label><br/>
             <select className='select' onChange={selectUniversity} value={info.Univesity}>
             {universities.length === 0 && console.log("Cargando")}
@@ -146,7 +156,7 @@ function App() {
             </select>
           </div>
 
-          <div className="secondColumn secondRow">
+          <div className="centerMedium">
           <label className="styleFont">Dirección</label><br/>
             <select className='select2'>
             {provinces.length === 0 && console.log("Cargando")}
@@ -164,25 +174,22 @@ function App() {
             </select>
           </div>
 
-          <div className="secondColumn thirdRow">
+          <div className="centerBottom">
+          <label className="styleFont">Dirección exacta</label><br/>
             <textarea onChange={changeHandler} id="direction" name="direction" type="textarea" rows="5" cols="50"  >{info.direction}</textarea>
           </div>
 
-          <div className="thirdColumn firstRow">
-            <label className="styleFont">Cédula</label><br/>
-            <input onChange={changeHandler} type="text" id="dni" name="dni" value={info.dni}/>
-          </div>
-          <div className="thirdColumn secondRow">
+          <div className="rightTop">
             <label className="styleFont">Teléfono</label><br/>
             <input onChange={changeHandler} type="text" id="phone" name="phone" value={info.phone}/>
           </div>
-          <div className="thirdColumn thirdRow">
+          <div className="rightMedium">
             <label className="styleFont">Correo Electrónico</label><br/>
             <input onChange={changeHandler} type="text" id="email" name="email" value={info.email}/>
           </div>
         </div>
 
-        <div className="bottom">
+        <div className="bottomUpdate">
           <button onClick={guardar} className='button1 buttonG2'>Guardar Cambios</button>
         </div>
     </div>

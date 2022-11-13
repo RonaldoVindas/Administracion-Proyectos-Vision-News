@@ -14,6 +14,8 @@ const getPersons = async (req, res) =>{
 }; 
 
 const updatePerson = async (req, res) =>{
+    // console.log(`${req.params.person_id}`);
+    // console.log(req.body);
     try{
         const id = req.params.person_id;
         const result = await db.query('UPDATE person set ? WHERE id_person = ?', [req.body, id]);

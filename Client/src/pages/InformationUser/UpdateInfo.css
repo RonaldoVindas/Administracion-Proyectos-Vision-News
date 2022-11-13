@@ -1,68 +1,94 @@
+.containerUpdate{
+  max-height: 100vh;
+  height: 900px;
+  min-width: 100vw;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 10% 40% 80% ;
+  grid-template-areas:  "header header"
+                        "bodyT bodyT"
+                        "bodyM bodyM"
+                        "footer footer";
+}
+
+
 .nav {
-  grid-column: 1 / 4;
-  grid-row: 1;
+  grid-area: header;
   background-color: black;
   color: white;
   font-size: 5vmin;
 }
 
-.top{
-  grid-column: 1 / 4;
-  grid-row: 2;
+.topUpdate{
+  grid-area: bodyT;
 }
 
 .mediumUpdate{
-  grid-column: 1 / 4;
-  grid-row: 3;
-  display: grid;
-  grid-template-columns: repeat(2);
-  grid-gap: 20px;
-  font-size: 5vmin;
-  padding-left: 5%;
-}
-.bottom{
-  grid-column: 1 / 4;
-  grid-row: 4;
+  grid-area: bodyM;
+  height: 75vh;
+  min-width: 100vw;
+  display: grid;  
+  grid-template-columns: 35% 35%;
+  grid-template-rows: 30% 30%;
+  grid-template-areas:  "topL topC topR"
+                        "mediumL mediumC mediumR"
+                        "bottomL bottomC bottomR";
   font-size: 5vmin;
 }
 
-.firstColumn{
-  grid-column: 1;
+
+.bottomUpdate{
+  grid-area: footer;
 }
 
-.secondColumn{
-  grid-column: 2;
+.leftTop{
+  grid-area: topL;
 }
 
-.thirdColumn{
-  grid-column: 3;
+.leftMedium{
+  grid-area: mediumL;
 }
 
-.firstRow{
-  grid-row: 1;
+.leftBottom{
+ grid-area: bottomL;
 }
 
-.secondRow{
-  grid-row: 2;
+.centerTop{
+  grid-area: topC;
 }
 
-.ThirdRow{
-  grid-row: 3;
+.centerMedium{
+  grid-area: mediumC;
 }
 
-.general{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 15px;
-  grid-auto-rows: minmax(100%, auto);
+.centerBottom{
+ grid-area: bottomC;
 }
+
+.informationPos{
+  padding-left: 15%;
+}
+
+.rightTop{
+  grid-area: topR;
+}
+
+.rightMedium{
+  grid-area: mediumR;
+}
+
+.rightBottom{
+  grid-area: bottomR;
+}
+
 
 .imageP{
   float: left;
-  margin-top: 5%;
-  margin-bottom: 1%;
+  margin-top: 3%;
+  margin-bottom: 2%;
   margin-left: 15%;
-  font-size: 15vmin;
+  height: 20vh;
+  width: 9vw;
 }
 
 .styleFontTitle{

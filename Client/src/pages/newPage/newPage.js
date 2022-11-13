@@ -86,8 +86,13 @@ const NewPage = () => {
           </div>
 
           <div className="calificationAndLikeBarNewView">
+            <div className='cali'>
             <h2>Calificación: {getCalification()} de 5 estrellas</h2>
+            <button type="">Calificar</button>
+            </div>
+            <div className='likebutton'> 
             <button type="">Like</button>
+            </div>
           </div>
 
           <div className="commentsNewView">

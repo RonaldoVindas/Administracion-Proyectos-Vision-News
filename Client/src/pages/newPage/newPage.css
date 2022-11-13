@@ -42,7 +42,22 @@
 
 .calificationAndLikeBarNewView {
   grid-area: nwlikes;
-
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+  grid-template-areas: "clcali cllike" ;
+  margin: 5px;
+}
+.cali{
+grid-area: clcali;
+;
+}
+.likebutton{
+grid-area: cllike;
+display: flex;
+  justify-content: right;
+  align-items: center;
+  margin: 20px ;
 }
 
 .commentsNewView {
@@ -119,3 +134,4 @@ border-radius: 10%;
   border-radius: 100%;
   margin: 15%;
 }
+

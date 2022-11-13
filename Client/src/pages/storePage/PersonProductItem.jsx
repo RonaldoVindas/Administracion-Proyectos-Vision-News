@@ -47,48 +47,20 @@ const Image = styled.img`
 
 const Title = styled.h1``
 const Description = styled.body``
-const Cost = styled.h2``
-const Button = styled.button`
-background: white;
-border-radius: 3px;
-border: 2px solid #BA1200;
-color: #BA1200;
-margin: 0 1em;
-padding: 0.25em 1em;
-`;
 
 
-const ProductItem = ({item}) => {
 
-  async function onComprar(){
-    //Quitarle 1 a la cantidad del producto
-    //Si la cantidad queda en 0 eliminar el producto de la base de datos
-    //Asignar el producto al usuario que lo compro
-    disminuirCantidadProducto();
-    asignarComprador();
-    
-  }
-
-  async function disminuirCantidadProducto(){
-    //Quitarle 1 a la cantidad del producto
-    //Si la cantidad queda en 0 eliminar el producto de la base de datos
-  }
-
-  async function asignarComprador(){
-    //Asignar el producto al usuario que lo compro
-  }
+const PersonProductItem = ({item}) => {
   return (
     <Container>
       <Circle/>
-      <Image src ={item.photo}/>
+      <Image src ={item.img}/>
       <Info>
           <Title>{item.name}</Title>
-          <Description>{item.description}</Description>
-          <Cost>{item.cost}</Cost>
-          <Button onClick={onComprar}>Canjear</Button>
+          <Description>{item.short_description}</Description>
       </Info>
     </Container>
   )
 }
 
-export default ProductItem
+export default PersonProductItem

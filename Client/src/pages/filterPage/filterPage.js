@@ -61,17 +61,17 @@ return (
                              
                              </div>
                              <div className="body">
-                             <ul>  <Link to={`/filternewsPage/filterNewsUniversity_id/${1}`}>
+                             <ul>  <Link className="linkfilters" to={`/filternewsPage/filterNewsUniversity_id/${1}`}>
                                     <li>
                                         UCR
                                         
                                     </li></Link>
-                                    <Link to={`/filternewsPage/filterNewsUniversity_id/${0}`}>
+                                    <Link className="linkfilters" to={`/filternewsPage/filterNewsUniversity_id/${0}`}>
                                     <li>
                                         TEC
                                         
                                     </li></Link>
-                                    <Link to={`/filternewsPage/filterNewsUniversity_id/${2}`}>
+                                    <Link className="linkfilters" to={`/filternewsPage/filterNewsUniversity_id/${2}`}>
                                     <li>
                                         UNA
                                         
@@ -87,22 +87,22 @@ return (
                              
                              </div>
                              <div className="body">
-                             <ul>  <Link to={`/filternewsPage/filterNewstype_id/${3}`}>
+                             <ul>  <Link className="linkfilters" to={`/filternewsPage/filterNewstype_id/${3}`}>
                                     <li>
                                         Titular
                                         
                                     </li></Link>
-                                    <Link to={`/filternewsPage/filterNewstype_id/${4}`}>
+                                    <Link className="linkfilters" to={`/filternewsPage/filterNewstype_id/${4}`}>
                                     <li> Entrevista</li></Link>
-                                    <Link to={`/filternewsPage/filterNewstype_id/${5}`}>
+                                    <Link className="linkfilters" to={`/filternewsPage/filterNewstype_id/${5}`}>
                                     <li>Salud</li></Link>
-                                    <Link to={`/filternewsPage/filterNewstype_id/${6}`}>
+                                    <Link className="linkfilters" to={`/filternewsPage/filterNewstype_id/${6}`}>
                                     <li>Comunal</li></Link>
-                                    <Link to={`/filternewsPage/filterNewstype_id/${7}`}>
+                                    <Link className="linkfilters" to={`/filternewsPage/filterNewstype_id/${7}`}>
                                     <li>Anuncio</li></Link>
-                                    <Link to={`/filternewsPage/filterNewstype_id/${8}`}>
+                                    <Link className="linkfilters" to={`/filternewsPage/filterNewstype_id/${8}`}>
                                     <li>Evento</li></Link>
-                                    <Link to={`/filternewsPage/filterNewstype_id/${9}`}>
+                                    <Link className="linkfilters" to={`/filternewsPage/filterNewstype_id/${9}`}>
                                     <li>Deportes</li></Link>
                                 </ul>
                                  

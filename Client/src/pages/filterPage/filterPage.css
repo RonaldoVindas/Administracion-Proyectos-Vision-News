@@ -51,7 +51,7 @@
     grid-area: filter2;
     text-decoration: none;
     color: white;
-
+    
 
   } 
   .university{
@@ -68,7 +68,10 @@
 
   }
 
+ .linkfilters{
+  color: white;
 
+ }
   
   .card2-text{  
     margin-right: auto;

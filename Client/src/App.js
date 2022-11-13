@@ -11,9 +11,10 @@ import SeeInfo from "./pages/InformationUser/SeeInfo.js";
 import UpdateInfo from "./pages/InformationUser/UpdateInfo.js";
 import FilterPage from "./pages/filterPage/filterPage.js";
 import SinginPage from "./pages/singinPage/singinPage.js";
-import StorePage from "./pages/storePage/Home";
+import StorePage from "./pages/storePage/Store";
+import PersonCart from "./pages/storePage/PersonCart";
 import FilternewsPage from "./pages/filterNews/filternewsPage.js"
-
+import EditProduct from "./pages/storePage/editPrueba";
 
 function App() {
   return (
@@ -27,7 +28,9 @@ function App() {
       <Route path="/SeeInfo" element={<SeeInfo/>}/>
       <Route path="/filterPage" element={<FilterPage/>}/>
       <Route path="/filternewsPage/:filtro/:f_id" element={<FilternewsPage/>}/>
-        <Route path="/storePage" element={<StorePage/>}/>
+      <Route path="/storePage" element={<StorePage/>}/>
+      <Route path="/personCart" element={<PersonCart/>}/>      
+      <Route path="/editProduct" element={<EditProduct/>}/>     
     </Routes>
   );
 }

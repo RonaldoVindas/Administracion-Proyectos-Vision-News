@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductList from './ProductList'
 
-const home = () => {
+const store = () => {
   return (
     <div>
      <ProductList/> 
@@ -9,4 +9,4 @@ const home = () => {
   );
 };
 
-export default home
+export default store

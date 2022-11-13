@@ -7,7 +7,9 @@ return (
 <div className="App">
         <div className='container2'>
             <div className='header2'>
-                header
+            <div className='header'>
+                <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
+            </div>
             </div>
          
             <div className='content2'>

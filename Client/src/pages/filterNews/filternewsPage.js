@@ -3,12 +3,13 @@ import {Link, useParams} from 'react-router-dom';
 import { useState } from 'react';
 
 
+
+
 const FilternewsPage = ()=>{
     const [news, setNews] = useState([]);
-    console.log(news)
-
+   
     const { filtro,f_id } = useParams();
-    console.log(filtro,f_id)
+    
 
     
     const loadNews = ()=>{
@@ -21,12 +22,22 @@ const FilternewsPage = ()=>{
         return newDate.toDateString();    
     }
 
+    function extracTextPiece(text){
+        if (text.length <= 150 ){ 
+            return text; 
+        }else{
+            let newText = text.substring(0, 150);
+            return newText;
+        }
+    }
+
+    loadNews();
     loadNews();
     return (
     <div className="App">
         <div className='container'>
             <div className='header'>
-                header
+                <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
             </div>
             <div className='navbar'>
                 navbar
@@ -41,7 +52,7 @@ const FilternewsPage = ()=>{
                             <div className='bcimageContainer'>
                                     <img src={eachNews.photo} alt={eachNews.title} />
                             </div>
-                            
+
                             <div className="bctitle">
                                 <div className='bctitleContainer'>
                                     <h2>{eachNews.title}</h2>
@@ -54,7 +65,7 @@ const FilternewsPage = ()=>{
 
                             <div className="bcbody">
                                 <div className='bctextContainer'>
-                                    <h2>Cuerpo</h2>
+                                    <h2>{extracTextPiece(eachNews.news_body)}...</h2>
                                 </div>
                             </div>
 
@@ -95,5 +106,4 @@ const FilternewsPage = ()=>{
     </div>
     )
 }
-
 export default FilternewsPage;

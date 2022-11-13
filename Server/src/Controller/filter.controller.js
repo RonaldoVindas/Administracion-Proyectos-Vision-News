@@ -23,8 +23,8 @@ export const getNews = async (req, res) =>{
 //Get news by ID
 export const getNewsById = async (req, res) =>{
     try{
-        const [rows] = await db.query("SELECT * FROM news WHERE news_id = ?", [req.params.id]);
-        res.json(rows[0]);
+        const [rows] = await db.query("SELECT news.news_id, news.title, news.news_body, news.photo, news.release_date, university.acronym, news_type.name FROM news INNER JOIN university ON news.university_id = university.university_id INNER JOIN news_type ON news.newstype_id = news_type.newsType_id;");
+        res.json(rows);
     }catch(e){
         res.status(500);
         res.send(e.message);
@@ -33,7 +33,7 @@ export const getNewsById = async (req, res) =>{
 
 export const getNewsByUniversity_id = async (req, res) =>{
     try{
-        const [rows] = await db.query("SELECT * FROM news WHERE university_id = ?", [req.params.id]);
+        const [rows] = await db.query("SELECT news.news_id, news.title, news.news_body, news.photo, news.release_date, university.acronym, news_type.name FROM news INNER JOIN university ON news.university_id = university.university_id INNER JOIN news_type ON news.newstype_id = news_type.newsType_id WHERE news.university_id = ?", [req.params.id]);
         res.json(rows);
     }catch(e){
         res.status(500);
@@ -43,7 +43,7 @@ export const getNewsByUniversity_id = async (req, res) =>{
 
 export const getNewsByPersonID = async (req, res) =>{
     try{
-        const [rows] = await db.query("SELECT * FROM news WHERE personID = ?", [req.params.id]);
+        const [rows] = await db.query("SELECT news.news_id, news.title, news.news_body, news.photo, news.release_date, university.acronym, news_type.name FROM news INNER JOIN university ON news.university_id = university.university_id INNER JOIN news_type ON news.newstype_id = news_type.newsType_id WHERE news.personID = ?", [req.params.id]);
         res.json(rows);
     }catch(e){
         res.status(500);
@@ -53,7 +53,7 @@ export const getNewsByPersonID = async (req, res) =>{
 
 export const getNewsByRelease_date = async (req, res) =>{
     try{
-        const [rows] = await db.query("SELECT * FROM news WHERE release_date = ?", [req.params.id]);
+        const [rows] = await db.query("SELECT news.news_id, news.title, news.news_body, news.photo, news.release_date, university.acronym, news_type.name FROM news INNER JOIN university ON news.university_id = university.university_id INNER JOIN news_type ON news.newstype_id = news_type.newsType_id WHERE news.release_date = ?", [req.params.id]);
         res.json(rows);
     }catch(e){
         res.status(500);
@@ -63,7 +63,7 @@ export const getNewsByRelease_date = async (req, res) =>{
 
 export const getNewsByNewstype_id = async (req, res) =>{
     try{
-        const [rows] = await db.query("SELECT * FROM news WHERE newstype_id = ?", [req.params.id]);
+        const [rows] = await db.query("SELECT news.news_id, news.title, news.news_body, news.photo, news.release_date, university.acronym, news_type.name FROM news INNER JOIN university ON news.university_id = university.university_id INNER JOIN news_type ON news.newstype_id = news_type.newsType_id WHERE news.newstype_id = ?", [req.params.id]);
         res.json(rows);
     }catch(e){
         res.status(500);

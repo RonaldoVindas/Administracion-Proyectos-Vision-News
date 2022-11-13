@@ -90,7 +90,7 @@ const NewPage = ()=>{
                 <div className='commentsForm'>
                   <Formik 
                     initialValues={{
-                      newsId: "",
+                      newsId: news.news_id,
                       body: "",
                       user_id: "",
 

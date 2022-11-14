@@ -129,7 +129,7 @@ const ProductItem = ({item}) => {
       <Circle/>
       <Image src ={item.photo}/>
       <Info>
-          <Title>{item.name}</Title>
+          <Title>{item.name}, # {item.product_id}</Title>
           <Description>{item.description}</Description>
           <Cost>{item.cost}</Cost>
           <Button onClick={onComprar}>Canjear</Button>

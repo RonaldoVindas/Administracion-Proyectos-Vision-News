@@ -158,7 +158,9 @@ const SinginPage = (props) => {
 
         <div>
             <div className='header2'>
-
+            <Link to={`/`}>
+                        <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
+                    </Link>
             </div>
             <h2 align="center">REGISTRARSE</h2>
             <div className="sing-in-container">

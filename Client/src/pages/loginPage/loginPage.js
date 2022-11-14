@@ -72,7 +72,7 @@ const LoginPage = (props) => {
 
         <div>
             <div className='header2'>
-
+            <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
             </div>
             <div className="auth-form-container">
                 <h2>INICIO DE SESIÓN</h2>

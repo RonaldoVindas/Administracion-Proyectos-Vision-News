@@ -7,7 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
-
+import { Link } from 'react-router-dom'
 const StatsPage = (props) => {    
     const url = "http://localhost:4000";
     //Gráficos
@@ -23,6 +23,8 @@ const StatsPage = (props) => {
                         }).catch(err => {
                           console.log(err)
                         });
+
+    console.log(dataSells);
       };
       
       const [dataSells, setDataSells] = useState([]);

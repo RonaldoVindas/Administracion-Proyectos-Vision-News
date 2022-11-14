@@ -76,12 +76,12 @@ const NewsPage = () => {
                                 Tienda
 
                             </li></Link>}
-                            {id!=""&&editor==0&&<Link className="linkfilters" to={`/news`}>
+                            {id!=""&&editor==0&&<Link className="linkfilters" to={`/stats`}>
                             <li>
                                 Estadisticas
 
                             </li></Link>}
-                            {id!=""&&<Link className="linkfilters" to={`/stats`}>
+                            {id!=""&&<Link className="linkfilters" to={`/`}>
                             <li onClick={logout}>
                                 logout
 

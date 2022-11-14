@@ -3,15 +3,23 @@ import "../storePage/CreateProduct.css";
 import axios from "axios";
 import swal from "sweetalert";
 
+import Cookies from "universal-cookie";
 const CreateProduct = (props) => {
-
+  
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [cost, setCost] = useState('');
     const [image, setImage] = useState('');
+   // const [productid, setproductid] = useState('');
+    //const [fec_creation, setfec_creation] = useState('');
+    //const [userCreation, usercreation] = useState('');
+    
 
-    const handleSubmit = (e) => {
+
+
+
+    function handleSubmit(e) {
         e.preventDefault();
         console.log(name);
     }
@@ -23,6 +31,9 @@ const CreateProduct = (props) => {
                 setDescription(response.data[0][0].description);
                 setCost(response.data[0][0].cost);
                 setImage(response.data[0][0].image);
+              //  setproductid(response.data[0][0].productid);
+              //  setfeccreation(response.data[0][0].productid);
+             //   usercreation(response.data[0][0].user_creation);
 
             }).catch(error =>{
                 swal("Error al registrar","" ,"warning")
@@ -32,10 +43,18 @@ const CreateProduct = (props) => {
 
     async function onSubmit() {
         const values = {
-            name: name,
-            cost: cost,
-            description: description,
-            image: image
+           // productid: productid,// no
+            name: name,// no --
+            cost: cost,// no --
+           // timesclimed: timesclimed,
+           // cuantity: cuantity,
+            description: description, 
+            //fec_creation:fec_creation,// no
+           // userCreation: usercreation,// no
+           // fecmodification:fecmodification,
+           // usermodification: usermodification,
+            image: image// --
+
         }
         await axios.put(`http://localhost:4000/store/${id}`, values)
             .then(response => {
@@ -58,9 +77,8 @@ const CreateProduct = (props) => {
 
             </div>
             <div className="auth-form-container">
-
-
                 <h2>Crear producto</h2>
+
                 <form className="form" onSubmit={handleSubmit}>
                     <label htmlFor="name">Nombre</label>
                     <input value = {name} onChange={(e) => setName(e.target.value)}type="name" id="name" name="name"/>

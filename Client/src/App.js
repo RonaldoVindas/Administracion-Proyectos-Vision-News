@@ -15,6 +15,7 @@ import StorePage from "./pages/storePage/Store";
 import PersonCart from "./pages/storePage/PersonCart";
 import FilternewsPage from "./pages/filterNews/filternewsPage.js"
 import EditProduct from "./pages/storePage/editPrueba";
+import CreateProduct from "./pages/storePage/CreateProduct.js";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route path="/storePage" element={<StorePage/>}/>
       <Route path="/personCart" element={<PersonCart/>}/>      
       <Route path="/editProduct" element={<EditProduct/>}/>     
+      <Route path="/createProduct" element={<CreateProduct/>}/>   
     </Routes>
   );
 }

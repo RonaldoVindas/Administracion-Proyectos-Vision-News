@@ -76,6 +76,9 @@ const newRelationship = async (req, res) =>{
     }
 };
 
+
+
+
 //Inserte un producto nuevo
 const newProduct = async (req, res) =>{
     try{
@@ -90,8 +93,6 @@ const newProduct = async (req, res) =>{
         } else {
             console.log("MAMANDO")
         }
-
-
         info.photo = image;
         console.log(info)
         const result = await db.query('INSERT INTO product set ?', [info]);

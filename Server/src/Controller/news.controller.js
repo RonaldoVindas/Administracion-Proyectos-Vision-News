@@ -107,7 +107,15 @@ export const createLikes = async (req, res) => {
     }
 };
 //Insert news likes
-
+export const getNewsLikes = async (req, res) => {
+    try {
+        const [rows] = await db.query("SELECT * FROM personxnews WHERE news_id = ? AND person_id = ? ", [req.params.id, req.params.id2]);
+        res.json(rows);
+    } catch (e) {
+        res.status(500);
+        res.send(e.message);
+    }
+};
 
 
 

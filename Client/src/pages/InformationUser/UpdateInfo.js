@@ -69,7 +69,7 @@ const getDistricts = async (value) =>{
 const selectProvince = (event) => {
     const value = event.target.value
     setInfo({... info,
-      canton: Number(value)});
+      province: Number(value)});
     getCantons(value)
 
 };
@@ -77,7 +77,7 @@ const selectProvince = (event) => {
 const selectCanton= (event) => {
     const value = event.target.value
     setInfo({... info,
-      distric: Number(value)});
+      canton: Number(value)});
     getDistricts(value)
 };
 

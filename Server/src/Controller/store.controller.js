@@ -83,17 +83,6 @@ const newRelationship = async (req, res) =>{
 const newProduct = async (req, res) =>{
     try{
         const info = req.body;
-        let image = null;
-        console.log(info)
-        if (req.files.image){
-            console.log("IMAGEN")
-            const result = await uploadImage(req.files.image.tempFilePath);
-            await fs.remove(req.files.image.tempFilePath)
-            image = result.secure_url
-        } else {
-            console.log("MAMANDO")
-        }
-        info.photo = image;
         console.log(info)
         const result = await db.query('INSERT INTO product set ?', [info]);
         res.json(result);

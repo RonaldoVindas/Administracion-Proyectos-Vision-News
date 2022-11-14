@@ -23,7 +23,7 @@ const EditPrueba = (props) => {
                 setCost(response.data[0][0].cost);
 
             }).catch(error =>{
-                swal("Error al registrar","" ,"warning")
+                swal("Error al Editar","" ,"warning")
                 console.log(error);
                 })
     }
@@ -37,14 +37,14 @@ const EditPrueba = (props) => {
         await axios.put(`http://localhost:4000/store/${id}`, values)
             .then(response => {
                 if(response.status === 200){
-                    swal("Registro completado","" ,"success").then((value) => {
+                    swal("Editar completado","" ,"success").then((value) => {
                         
                     })
                 }else{
-                    swal("Error al registrar","" ,"warning")
+                    swal("Error al Editar","" ,"warning")
                 }
             }).catch(error =>{
-                swal("Error al registrar","" ,"warning")
+                swal("Error al Editar","" ,"warning")
                 console.log(error);
                 })
     }

@@ -43,7 +43,7 @@ const CreateProduct = (props) => {
 
     async function onSubmit() {
         const values = {
-           // productid: productid,// no
+            //productid: productid,// no
             name: name,// no --
             cost: cost,// no --
            // timesclimed: timesclimed,
@@ -79,7 +79,7 @@ const CreateProduct = (props) => {
             <div className="auth-form-container">
                 <h2>Crear producto</h2>
 
-                <form className="form" onSubmit={handleSubmit}>
+                <form className="form" onSubmit={handleSubmit}>             
                     <label htmlFor="name">Nombre</label>
                     <input value = {name} onChange={(e) => setName(e.target.value)}type="name" id="name" name="name"/>
                     <label htmlFor="description">Descripción</label>
@@ -87,13 +87,11 @@ const CreateProduct = (props) => {
                     <label htmlFor="cost">Costo</label>
                     <input value = {cost} onChange={(e) => setCost(e.target.value)}type="cost" id="cost" name="cost"/>
 
-                    <label htmlFor="imagen"> Imagen </label>
-                    <input value = {image} onChange={(e) => setImage(e.target.value)}type="image" id="image" name="image"/>
+                    <label htmlFor="image"> Imagen </label>
+                    <input value = {image} onChange={(e) => setCost(e.target.value)}type="text" id="image" name="image"/>
                 </form>
                 <div>
                     <button onClick={onSubmit}> Crear </button>
-                    <button onClick={onSubmit}> EDITAR </button>
-
                 </div>
             </div>
         </div>

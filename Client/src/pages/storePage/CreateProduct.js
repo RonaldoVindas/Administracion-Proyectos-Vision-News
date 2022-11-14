@@ -1,14 +1,15 @@
 import React, {useState} from "react";
-import "../storePage/editPrueba.css";
+import "../storePage/CreateProduct.css";
 import axios from "axios";
 import swal from "sweetalert";
 
-const EditPrueba = (props) => {
+const CreateProduct = (props) => {
 
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [cost, setCost] = useState('');
+    const [image, setImage] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,6 +22,7 @@ const EditPrueba = (props) => {
                 setName(response.data[0][0].name);
                 setDescription(response.data[0][0].description);
                 setCost(response.data[0][0].cost);
+                setImage(response.data[0][0].image);
 
             }).catch(error =>{
                 swal("Error al registrar","" ,"warning")
@@ -32,7 +34,8 @@ const EditPrueba = (props) => {
         const values = {
             name: name,
             cost: cost,
-            description: description
+            description: description,
+            image: image
         }
         await axios.put(`http://localhost:4000/store/${id}`, values)
             .then(response => {
@@ -65,9 +68,12 @@ const EditPrueba = (props) => {
                     <input value = {description} onChange={(e) => setDescription(e.target.value)}type="description" id="description" name="description"/>
                     <label htmlFor="cost">Costo</label>
                     <input value = {cost} onChange={(e) => setCost(e.target.value)}type="cost" id="cost" name="cost"/>
+
+                    <label htmlFor="imagen"> Imagen </label>
+                    <input value = {image} onChange={(e) => setImage(e.target.value)}type="image" id="image" name="image"/>
                 </form>
                 <div>
-  
+                    <button onClick={onSubmit}> Crear </button>
                     <button onClick={onSubmit}> EDITAR </button>
 
                 </div>
@@ -77,4 +83,4 @@ const EditPrueba = (props) => {
     )
 }
 
-export default EditPrueba;
+export default CreateProduct;

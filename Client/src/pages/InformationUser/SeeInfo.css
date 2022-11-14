@@ -13,7 +13,7 @@
 
 .nav{
   grid-area: header;
-  background-color: black;
+  background-color: #D53143;
   color: white;
   font-size: 5vmin;
 }

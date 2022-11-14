@@ -3,7 +3,7 @@ import React, {useState, useEffect}from 'react';
 import {useNavigate } from 'react-router-dom'
 import axios from "axios";
 import {Link} from "react-router-dom";
-
+import swal from "sweetalert";
 import Cookies from "universal-cookie";
 
 const cookies = new Cookies();
@@ -40,14 +40,7 @@ function App() {
                     });
   };
 
-  const updateInfo = async () =>{
-    await axios.put(url + `/person/${info.dni}`, info)
-                    .then(response => {
-                      console.log(response)
-                    }).catch(err => {
-                      console.log(err)
-                    });
-  };
+
 
   const [genders, setGenders] = useState([]);
   const [universities, setUniversities] = useState([]);
@@ -59,6 +52,41 @@ function App() {
     getProvinces();
   }, []);
 
+  async function updateInfo() {
+    const values = {
+      
+      email: info.email,
+      first_name: info.name,
+      last_name: info.lastName,
+      direction: info.direction,
+      phone: info.phone,
+      gender_id: info.gender,
+      province_id: info.province,
+      university_id: info.university
+
+  }
+    await axios.put(`http://localhost:4000/person/${info.dni}`, values)
+        .then(response => {
+            if(response.status === 200){
+                swal("Informacion Actualizada","" ,"success").then((value) => {
+                  cookies.set('first_name',       info.name,       {path: "/"});
+                  cookies.set('last_name',       info.lastName  ,       {path: "/"});
+                  cookies.set('email',        info.email,       {path: "/"});
+                  cookies.set('genre_id',        info.gender ,        {path: "/"});
+                  cookies.set('university_id',         info.university,        {path: "/"});
+                  cookies.set('province_id',         info.province,        {path: "/"});
+                  cookies.set('phone',         info.phone,        {path: "/"});
+                  cookies.set('direction',         info.direction,        {path: "/"});
+                    
+                })
+            }else{
+                swal("Error al actualizar","" ,"warning")
+            }
+        }).catch(error =>{
+            swal("Error al actualizar","" ,"warning")
+            console.log(error);
+            })
+}
   //Informacion del usuario
   const[info, setInfo]=useState({
     name: cookies.get('first_name'),
@@ -66,14 +94,15 @@ function App() {
     email: cookies.get('email'),
     dni: cookies.get('id_person'),
     editor: cookies.get('editor'),
-    gender: cookies.get('gender_id'),
+    gender: cookies.get('genre_id'),
     personType: cookies.get('personType_id'),
-    univesity: cookies.get('university_id'),
+    university: cookies.get('university_id'),
     province: cookies.get('province_id'),
     points: cookies.get('points'),
     phone: cookies.get('phone'),
     birthDay: cookies.get('birth_day'),
-    direction: cookies.get('direction')
+    direction: cookies.get('direction'),
+    photo: cookies.get('photo')
   });
 
   const selectGender = (event) => {
@@ -85,13 +114,13 @@ function App() {
   const selectUniversity = (event) => {
     const value = event.target.value;
     setInfo({... info,
-            Univesity: Number(value)});
+      university: Number(value)});
   };
 
   function guardar(){
     //Codigo para actualizar
     updateInfo();
-    navigate("/SeeInfo");
+    navigate("/news");
 
   }
 
@@ -110,7 +139,7 @@ function App() {
 
         <div className='topUpdate'>
           <label className="styleFontTitle">Editar Perfil</label>
-          <img className="imageSee" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"/>
+          <img className="imageSee" src={info.photo}/>
           {/* <div className="name">
             <input type="text" className="" id="" name="" />
             <input type="text" className="input2" id="" name=""  />
@@ -151,7 +180,7 @@ function App() {
 
           <div className="centerTop">
           <label className="styleFont">Universidad</label><br/>
-            <select className='select' onChange={selectUniversity} value={info.Univesity}>
+            <select className='select' onChange={selectUniversity} value={info.university}>
             {universities.length === 0 && console.log("Cargando")}
               {universities.map((options) => (
                 <option style = {{color: 'black', fontWeight: 'bold'}} key={options.acronym} value={options.university_id}>

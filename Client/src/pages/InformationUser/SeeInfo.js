@@ -51,7 +51,7 @@ function SeeInfo(){
     email: cookies.get('email'),
     dni: cookies.get('id_person'),
     editor: cookies.get('editor'),
-    gender: cookies.get('gender_id'),
+    gender: cookies.get('genre_id'),
     personType: cookies.get('personType_id'),
     univesity: cookies.get('university_id'),
     province: cookies.get('province_id'),

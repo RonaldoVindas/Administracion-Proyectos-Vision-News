@@ -51,7 +51,7 @@ function SeeInfo(){
     email: cookies.get('email'),
     dni: cookies.get('id_person'),
     editor: cookies.get('editor'),
-    gender: cookies.get('genre_id'),
+    gender: cookies.get('gender_id'),
     personType: cookies.get('personType_id'),
     univesity: cookies.get('university_id'),
     province: cookies.get('province_id'),
@@ -67,8 +67,12 @@ function SeeInfo(){
   function getGender(){
     if(genders.length !== 0){
       const result = genders.find(({gender_id}) => gender_id == info.gender);
+    
       return result.description;
+      
+
     }
+    
     return '';
   }
 

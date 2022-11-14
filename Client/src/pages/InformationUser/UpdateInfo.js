@@ -94,7 +94,7 @@ function App() {
     email: cookies.get('email'),
     dni: cookies.get('id_person'),
     editor: cookies.get('editor'),
-    gender: cookies.get('genre_id'),
+    gender: cookies.get('gender_id'),
     personType: cookies.get('personType_id'),
     university: cookies.get('university_id'),
     province: cookies.get('province_id'),

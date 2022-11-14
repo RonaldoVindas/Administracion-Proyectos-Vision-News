@@ -16,25 +16,29 @@ const EditPrueba = (props) => {
     }
 
     async function onSearch(){
+        await axios.get(`http://localhost:4000/search/${id}`)
+            .then(response => {
+                setName(response.data[0][0].name);
+                setDescription(response.data[0][0].description);
+                setCost(response.data[0][0].cost);
 
+            }).catch(error =>{
+                swal("Error al registrar","" ,"warning")
+                console.log(error);
+                })
     }
 
     async function onSubmit() {
         const values = {
             name: name,
             cost: cost,
-            description: description,
-            fec_creation: "2022/11/12",
-            user_creation: name,
-            editor: 0
+            description: description
         }
-        await axios.put(`http://localhost:4000/store/${id}`, values, {
-            Headers:{"Content-Type": "multipart/form-data",}
-        })
+        await axios.put(`http://localhost:4000/store/${id}`, values)
             .then(response => {
                 if(response.status === 200){
                     swal("Registro completado","" ,"success").then((value) => {
-                        window.location.href="/";
+                        
                     })
                 }else{
                     swal("Error al registrar","" ,"warning")
@@ -54,8 +58,8 @@ const EditPrueba = (props) => {
                 <form>
                     <label htmlFor="id">PRODUCT ID # </label>
                     <input value = {id} onChange={(e) => setId(e.target.value)}type="id" id="id" name="id"/>
-                    <button onClick={onSearch}> BUSCAR </button>
                 </form>
+                <div><button onClick={onSearch}> BUSCAR </button></div>
                 <h2>EDITAR PRODUCTO</h2>
                 <form className="form" onSubmit={handleSubmit}>
                     <label htmlFor="name">Nombre</label>

@@ -13,7 +13,7 @@ const getProductItems = async (req, res) =>{
 };
 
 //Obtenga la cantidad de productos que queden (Atributo cantidad)
-const getCantidadProduct = async (req, res) =>{
+/*const getCantidadProduct = async (req, res) =>{
     try{
         const id = req.params.product_id;
         const result = await db.query('SELECT cuantity FROM product WHERE id_product = ?', [req.body, id]);
@@ -22,7 +22,7 @@ const getCantidadProduct = async (req, res) =>{
         res.status(500);
         res.send(e.message);
     }
-};
+};*/
 
 //Altere la cantidad de productos que queden (Atributo cantidad)
 const updateCantidadProduct = async (req, res) =>{
@@ -38,7 +38,7 @@ const updateCantidadProduct = async (req, res) =>{
 };
 
 //Borre productos de la base de datos
-const deleteProduct = async (req, res) =>{
+/*const deleteProduct = async (req, res) =>{
     try{
         const id = req.params.product_id;
         const result = await db.query('DELETE FROM product WHERE id_product = ?', [req.body, id]);
@@ -47,12 +47,13 @@ const deleteProduct = async (req, res) =>{
         res.status(500);
         res.send(e.message);
     }
-};
+};*/
 //Obtenga todos los productos asignados a una persona
 //*Confirmar si sirve*
 const getProductsBought = async (req, res) =>{
+    const id = req.params.person_id;
     try{
-        const result = await db.query('SELECT * FROM product left join personxproduct WHERE person_id = ?');
+        const result = await db.query('SELECT name, description, photo FROM product as p left join personxproduct as pp on p.product_id = pp.product_id WHERE person_id = ?', [id]);
         res.json(result);
     }catch(e){
         res.status(500);
@@ -61,6 +62,19 @@ const getProductsBought = async (req, res) =>{
 };
 
 //Asigne un producto a una persona
+const newRelationship = async (req, res) =>{
+    try{
+        const info = req.body;
+
+        console.log(info)
+        const result = await db.query('INSERT INTO personxproduct set ?', [info]);
+        res.json(result);
+    }catch(e){
+        console.log(e)
+        res.status(500);
+        res.send(e.message);
+    }
+};
 
 //Inserte un producto nuevo
 const newProduct = async (req, res) =>{
@@ -91,9 +105,11 @@ const newProduct = async (req, res) =>{
 
 //Actualice un producto existente
 const updateProduct = async (req, res) =>{
+    //console.log("Funciona :)");
     try{
         const id = req.params.product_id;
         const product = req.body;
+        //console.log(id, product);
         const result = await db.query('UPDATE product SET ? WHERE product_id = ?', [product, id]);
         res.json(result);
     }catch(e){
@@ -104,9 +120,10 @@ const updateProduct = async (req, res) =>{
 
 //Obtener producto por ID
 const getProductByID = async (req, res) =>{
+    console.log("Funciona");
     try{
         const id = req.params.product_id;
-        const result = await db.query('SELECT * FROM product WHERE id_product = ?', [req.body, id]);
+        const result = await db.query('SELECT name, description, cost FROM product WHERE product_id = ?', [id]);
         res.json(result);
     }catch(e){
         res.status(500);
@@ -114,5 +131,6 @@ const getProductByID = async (req, res) =>{
     }
 };
 export default{
-    getProductItems, getCantidadProduct, updateCantidadProduct, deleteProduct, newProduct, updateProduct,getProductsBought
+    getProductItems, updateCantidadProduct, newProduct, updateProduct,getProductsBought,
+    getProductByID, newRelationship
 }

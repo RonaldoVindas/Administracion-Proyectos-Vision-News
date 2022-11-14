@@ -5,7 +5,9 @@ import React, {useState, useEffect}from 'react';
 import axios from "axios";
 import ProductItem from './ProductItem'
 import styled from 'styled-components';
+import Cookies from "universal-cookie/es6";
 
+const cookies = new Cookies();
 const Container = styled.div`
     padding: 20px;
     display: flex;
@@ -43,6 +45,8 @@ padding: 0.25em 1em;
 
 
 const ProductList = () => {
+  const [points, setPoints] = useState(cookies.get("points"));
+  const [first_name, setName] = useState(cookies.get("first_name"));
   const url = "http://localhost:4000";
 
   const getProducts = async () => {
@@ -63,10 +67,10 @@ const ProductList = () => {
 
   return (
     <div>
-      <Data> ¡Bienvenido usuario! su cantidad de puntos para canjear son: [] <Button>Regreso</Button></Data>
+      <Data> ¡Bienvenido {first_name}! su cantidad de puntos para canjear son: {points} <Button>Regreso</Button></Data>
       <Container>
       {products.map((item) => ( //procesar todo lo que habia en la base
-        <ProductItem item={item} key={item.product_id} /> // darle formato 
+        <ProductItem item={item} key={item.product_id}/> // darle formato 
       ))}
 
       </Container>

@@ -5,6 +5,7 @@ import { Form, Formik, Field } from 'formik'
 import axios from 'axios';
 import Cookies from "universal-cookie/es6";
 import { Link } from 'react-router-dom'
+import swal from "sweetalert";
 
 let cookies = new Cookies()
 
@@ -53,9 +54,12 @@ const CreateNews = () => {
                             headers: {
                                 "Content-Type": "multipart/form-data",
                             },
+                        
                         });
 
-                        navigate('/news');
+                        swal("Noticia Enviada","" ,"success").then((value) => {
+                            window.location.href="/news";
+                        });
 
                     } catch (error) {
                         console.log(error);

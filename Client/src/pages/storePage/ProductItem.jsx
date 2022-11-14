@@ -111,16 +111,16 @@ const ProductItem = ({item}) => {
           console.log("RESPUESTA")
           console.log(response)
           if(response.status === 200){
-              swal("Registro completado","" ,"success").then((value) => {
-                  window.location.href="/";
+              swal("Compra Realizada","" ,"success").then((value) => {
+                  window.location.href="/news";
               })
           }else{
-              swal("Error al registrar","" ,"warning")
+              swal("Error al canjear","" ,"warning")
           }
       })
 
       .catch(error =>{
-          swal("Error al registrar","" ,"warning")
+          swal("Error al canjear","" ,"warning")
           console.log(error);
       })
   }

@@ -4,6 +4,8 @@ import { Form, Formik } from 'formik'
 import axios from 'axios';
 import './newPage.css'
 import Cookies from "universal-cookie/es6";
+import swal from "sweetalert";
+
 let cookies = new Cookies()
 const NewPage = () => {
 
@@ -121,8 +123,12 @@ const NewPage = () => {
                   onSubmit={async (values) => {
 
                     try {
+                      if(cookies.get("id_person")===""){
+                        swal("Usuario no logueado","" ,"warning")
+                        
+                      }else{
                       console.log(values);
-                      await axios.post('http://localhost:4000/crtcomment', values);
+                      await axios.post('http://localhost:4000/crtcomment', values);}
                     } catch (error) {
                       console.log(error);
                     }

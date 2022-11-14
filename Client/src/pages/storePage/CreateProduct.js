@@ -11,9 +11,7 @@ const CreateProduct = (props) => {
     const [description, setDescription] = useState('');
     const [cost, setCost] = useState('');
     const [image, setImage] = useState('');
-   // const [productid, setproductid] = useState('');
-    //const [fec_creation, setfec_creation] = useState('');
-    //const [userCreation, usercreation] = useState('');
+
     
 
 
@@ -24,39 +22,23 @@ const CreateProduct = (props) => {
         console.log(name);
     }
 
-    async function onSearch(){
-        await axios.get(`http://localhost:4000/search/${id}`)
-            .then(response => {
-                setName(response.data[0][0].name);
-                setDescription(response.data[0][0].description);
-                setCost(response.data[0][0].cost);
-                setImage(response.data[0][0].image);
-              //  setproductid(response.data[0][0].productid);
-              //  setfeccreation(response.data[0][0].productid);
-             //   usercreation(response.data[0][0].user_creation);
-
-            }).catch(error =>{
-                swal("Error al registrar","" ,"warning")
-                console.log(error);
-                })
-    }
 
     async function onSubmit() {
         const values = {
-           // productid: productid,// no
+            product_id: id,
             name: name,// no --
             cost: cost,// no --
            // timesclimed: timesclimed,
            // cuantity: cuantity,
             description: description, 
-            //fec_creation:fec_creation,// no
-           // userCreation: usercreation,// no
+            fec_creation: "2022/11/12",// no
+            user_creation: "Glori" ,// no
            // fecmodification:fecmodification,
            // usermodification: usermodification,
-            image: image// --
+            photo: image// --
 
         }
-        await axios.put(`http://localhost:4000/store/${id}`, values)
+        await axios.post(`http://localhost:4000/CreateProduct`, values)
             .then(response => {
                 if(response.status === 200){
                     swal("Registro completado","" ,"success").then((value) => {
@@ -67,7 +49,7 @@ const CreateProduct = (props) => {
                 }
             }).catch(error =>{
                 swal("Error al registrar","" ,"warning")
-                console.log(error);
+                console.log(values);
                 })
     }
     return (
@@ -80,20 +62,20 @@ const CreateProduct = (props) => {
                 <h2>Crear producto</h2>
 
                 <form className="form" onSubmit={handleSubmit}>
-                    <label htmlFor="name">Nombre</label>
+                    <label htmlFor="id"># PRODUCTO</label>
+                    <input value = {id} onChange={(e) => setId(e.target.value)}type="id" id="id" name="id"/>           
+                    <label htmlFor="name">NOMBRE</label>
                     <input value = {name} onChange={(e) => setName(e.target.value)}type="name" id="name" name="name"/>
-                    <label htmlFor="description">Descripción</label>
+                    <label htmlFor="description">DESCRIPCIÓN</label>
                     <input value = {description} onChange={(e) => setDescription(e.target.value)}type="description" id="description" name="description"/>
-                    <label htmlFor="cost">Costo</label>
+                    <label htmlFor="cost">COSTO</label>
                     <input value = {cost} onChange={(e) => setCost(e.target.value)}type="cost" id="cost" name="cost"/>
 
-                    <label htmlFor="imagen"> Imagen </label>
-                    <input value = {image} onChange={(e) => setImage(e.target.value)}type="image" id="image" name="image"/>
+                    <label htmlFor="image"> IMAGEN </label>
+                    <input value = {image} onChange={(e) => setImage(e.target.value)}type="text" id="image" name="image"/>
                 </form>
                 <div>
                     <button onClick={onSubmit}> Crear </button>
-                    <button onClick={onSubmit}> EDITAR </button>
-
                 </div>
             </div>
         </div>

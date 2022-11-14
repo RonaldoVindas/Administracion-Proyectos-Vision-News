@@ -23,7 +23,7 @@ const EditPrueba = (props) => {
                 setCost(response.data[0][0].cost);
 
             }).catch(error =>{
-                swal("Error al registrar","" ,"warning")
+                swal("Error al Editar","" ,"warning")
                 console.log(error);
                 })
     }
@@ -37,7 +37,7 @@ const EditPrueba = (props) => {
         await axios.put(`http://localhost:4000/store/${id}`, values)
             .then(response => {
                 if(response.status === 200){
-                    swal("Registro completado","" ,"success").then((value) => {
+                    swal("Edit completado","" ,"success").then((value) => {
                         
                     })
                 }else{
@@ -55,9 +55,15 @@ const EditPrueba = (props) => {
 
             </div>
             <div className="auth-form-container">
+                <form>
+                    <label htmlFor="id">PRODUCT ID # </label>
+                    <input value = {id} onChange={(e) => setId(e.target.value)}type="id" id="id" name="id"/>
+                    
+                </form>
+                <button onClick={onSearch}> BUSCAR </button>
 
 
-                <h2>Crear producto</h2>
+                <h2>EDITAR PRODUCTO</h2>
                 <form className="form" onSubmit={handleSubmit}>
                     <label htmlFor="name">Nombre</label>
                     <input value = {name} onChange={(e) => setName(e.target.value)}type="name" id="name" name="name"/>

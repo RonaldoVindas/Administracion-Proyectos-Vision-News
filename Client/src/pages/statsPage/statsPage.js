@@ -15,36 +15,26 @@ const StatsPage = (props) => {
         { name: 'TEC', value: 62 },
         { name: 'UCR', value: 93 },
     ];
-    const getDataSells = async () => {
-    
-        await axios.get(url + "/gproducts")
-                        .then(response => {
-                          setDataSells(response.data[0]);
-                        }).catch(err => {
-                          console.log(err)
-                        });
-
-    console.log(dataSells);
-      };
-      
-      const [dataSells, setDataSells] = useState([]);
-      
-      useEffect (() => {
-        getDataSells();
-      }, []);
+    const dataSells = [
+        {name: 'Camisa', value: 5, desc: 'Es blanca con un logo'},
+        {name: 'Camisa', value: 3, desc: 'Camisa de botones estampada'},
+        {name: 'Tote bag', value: 4, desc: 'Bolso estampado'},
+        {name: 'Camisa', value: 2, desc: 'Camisa blanca estampada'},
+        {name: 'Gorra', value: 6, desc: 'Gris con gato amarillo'},
+    ]
       
     const COLORSUNIS = ['#0088FE', '#6BBBFF'];
     const COLORSSELLS = ['#FFB4A4', '#EAA4FF', '#A4F2FF', '#A4FFD1', '#B3FFA4', '#E6FFA4', '#FFE8A4'];
     
     const RADIAN = Math.PI / 180;
-    const renderCustomizedLabel = ({ name, cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const renderCustomizedLabel = ({ value, cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
         const radius = innerRadius + (outerRadius - innerRadius) * 0.6;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
         return (
             <text x={x} y={y} fill="black" fontWeight='600' textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-                {`${(percent * 100).toFixed(0)}%`}
+                {value + ` ~ ${(percent * 100).toFixed(0)}%`}
             </text>
           );
         };
@@ -154,11 +144,10 @@ const StatsPage = (props) => {
                             {dataSells.map((entry, index) => (
                                 <ListItem>
                                     <ListItemText
-                                        primaryTypographyProps={{fontSize: '22px', fontWeight: 'bold'}}
-                                        secondaryTypographyProps={{fontSize: '18px', fontWeight: 900}}
-                                        style={{color:COLORSSELLS[index % COLORSSELLS.length]}}
+                                        primaryTypographyProps={{color:'black', backgroundColor:COLORSSELLS[index % COLORSSELLS.length], fontSize: '10px', fontWeight: 'bold'}}
+                                        secondaryTypographyProps={{fontSize: '10px', fontWeight: 600}}
                                         primary={entry.name}
-                                        secondary={entry.value}
+                                        secondary={entry.desc}
                                     />
                                 </ListItem>
                             ))}

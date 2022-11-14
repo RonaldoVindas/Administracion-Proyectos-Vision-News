@@ -15,12 +15,10 @@ export const getNews = async (req, res) => {
 //Create a new and insert it into the database
 export const createNew = async (req, res) => {
     try {
-        const { title, news_body, newstype_id } = req.body;
+        const { title, news_body, newstype_id, personID, user_creation, university_id} = req.body;
         let photo = null;
         let fec_creation = new Date(Date.now());
-        let personID = 0;
-        let user_creation = 'Gerson';
-        let university_id = 0;
+        
 
 
         if (req.files.photo) {
@@ -40,11 +38,13 @@ export const createNew = async (req, res) => {
 //Get news by ID
 export const getNewsById = async (req, res) => {
     try {
-        const [rows] = await db.query("SELECT news.news_id, news.title, news.news_body, news.photo, news.release_date, person.email, person.first_name, person.last_name, person.photo as pphoto, person.average_calification, university.acronym, person_type.persontype_name   FROM news INNER JOIN person ON news.personID = person.id_person INNER JOIN university ON person.university_id = university.university_id INNER JOIN person_type ON person_type.persontype_id = person.id_person WHERE news.news_id = ?", [req.params.id]);
+        const [rows] = await db.query("SELECT news.news_id, news.title, news.news_body, news.photo, news.release_date, person.email, person.first_name, person.last_name, person.photo as pphoto, person.average_calification, university.acronym, person_type.persontype_name   FROM news INNER JOIN person ON news.personID = person.id_person INNER JOIN university ON person.university_id = university.university_id INNER JOIN person_type ON person_type.persontype_id = person.persontype_id WHERE news.news_id = ?", [req.params.id]);
+        console.log(rows)
         res.json(rows[0]);
     } catch (e) {
         res.status(500);
         res.send(e.message);
+        console.log(e)
     }
 };
 
@@ -84,9 +84,9 @@ export const getNewsComments = async (req, res) => {
 //Insert news comments
 export const createCommet = async (req, res) => {
     try {
-        const { newsId, body, user_id } = req.body;
+        const { newsID, body, user_id } = req.body;
 
-        const result = await db.query('INSERT INTO comment (newsId, body, user_id) VALUES (?,?,?)', [newsId, body, user_id]);
+        const result = await db.query('INSERT INTO comment (newsID, body, user_id) VALUES (?,?,?)', [newsID, body, user_id]);
         res.json(result);
     } catch (e) {
         res.status(500);

@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { Form, Formik } from 'formik'
 import axios from 'axios';
 import './newPage.css'
-
+import Cookies from "universal-cookie/es6";
+let cookies = new Cookies()
 const NewPage = () => {
 
   const [news, setNews] = useState({});
@@ -12,8 +13,14 @@ const NewPage = () => {
 
   const { new_id } = useParams();
 
-  const loadNew = () => {
-    fetch(`http://localhost:4000/gnewsID/${new_id}`).then(response => response.json()).then(news => setNews(news));
+
+  const loadNew = async () => {
+    await fetch(`http://localhost:4000/gnewsID/${new_id}`).then(response => response.json()).then(news => setNews(news));
+  }
+
+  function changeDateFormat(date) {
+    let newDate = new Date(date);
+    return newDate.toDateString();
   }
 
   const loadComments = () => {
@@ -62,7 +69,7 @@ const NewPage = () => {
               <p>{news.persontype_name} {news.acronym}</p>
             </div>
             <div className='releaseDateNewView'>
-              <p>Publicado el {news.release_date}</p>
+              <p>Publicado el {changeDateFormat(news.release_date)}</p>
             </div>
             <div className='autorCalificatiónNewView'>
               <p>calificación: {news.average_calification}</p>
@@ -105,14 +112,16 @@ const NewPage = () => {
               <div className='commentsForm'>
                 <Formik
                   initialValues={{
-                    newsId: news.news_id,
+                    newsID: new_id,
                     body: "",
-                    user_id: "",
+                    user_id: cookies.get("id_person"),
 
                   }}
 
                   onSubmit={async (values) => {
+
                     try {
+                      console.log(values);
                       await axios.post('http://localhost:4000/crtcomment', values);
                     } catch (error) {
                       console.log(error);

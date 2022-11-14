@@ -33,18 +33,59 @@ function App() {
 
   const getProvinces = async () =>{
     await axios.get(url + "/provinces")
-                    .then(response => {
-                      setProvinces(response.data[0]);
-                    }).catch(err => {
-                      console.log(err)
-                    });
-  };
+        .then(response => {
+            const pro = response.data[0][0].province_id;
+            setProvinces(response.data[0]);
+            getCantons(pro)
+        }).catch(err => {
+            console.log(err)
+        });
+};
 
+const getCantons = async (value) =>{
+    await axios.get(url + "/cantons",{params:{provinceId:value}})
+        .then(response => {
+            const can = response.data[0][0].canton_id;
+            //setCanton(can)
+            setCantons(response.data[0]);
+            getDistricts(can)
+        }).catch(err => {
+            console.log(err)
+        });
 
+};
+
+const getDistricts = async (value) =>{
+    await axios.get(url + "/districts",{params:{cantonId:value}})
+        .then(response => {
+            const dis = response.data[0][0].distric_id
+            //setDistrict(dis)
+            setDistricts(response.data[0]);
+        }).catch(err => {
+            console.log(err)
+        });
+};
+
+const selectProvince = (event) => {
+    const value = event.target.value
+    setInfo({... info,
+      canton: Number(value)});
+    getCantons(value)
+
+};
+
+const selectCanton= (event) => {
+    const value = event.target.value
+    setInfo({... info,
+      distric: Number(value)});
+    getDistricts(value)
+};
 
   const [genders, setGenders] = useState([]);
   const [universities, setUniversities] = useState([]);
   const [provinces, setProvinces] = useState([]);
+  const [cantons, setCantons] = useState([]);
+  const [districts, setDistricts] = useState([]);
 
   useEffect(() => {
     getGenders();
@@ -98,6 +139,8 @@ function App() {
     personType: cookies.get('personType_id'),
     university: cookies.get('university_id'),
     province: cookies.get('province_id'),
+    cantons: 0,
+    distric: 0,
     points: cookies.get('points'),
     phone: cookies.get('phone'),
     birthDay: cookies.get('birth_day'),
@@ -192,7 +235,7 @@ function App() {
 
           <div className="centerMedium">
           <label className="styleFont">Dirección</label><br/>
-            <select className='select2'>
+            <select className='select2' onChange={selectProvince} value={info.province}>
             {provinces.length === 0 && console.log("Cargando")}
               {provinces.map((options) => (
                 <option style = {{color: 'black', fontWeight: 'bold'}} key={options.province_name} value={options.province_id}>
@@ -200,11 +243,21 @@ function App() {
                 </option>
               ))}
             </select>
-            <select className='select2 selectPos'>
-              <option value = '1'>Montes De Oca</option>
+            <select className='select2 selectPos' onChange={selectCanton} value={info.canton}>
+                  {cantons.length === 0 && console.log("Cargando")}
+                  {cantons.map((options) => (
+                      <option key={options.canton_name} value={options.canton_id}>
+                          {options.canton_name}
+                      </option>
+                  ))}
             </select>
-            <select className='select2 selectPos'>
-              <option value = '1'>Sabanilla</option>
+            <select className='select2 selectPos' onChange={(e) => setInfo(...info,e.target.value)} value={info.district}>
+                  {districts.length === 0 && console.log("Cargando")}
+                  {districts.map((options) => (
+                      <option key={options.distric_name} value={options.distric_id}>
+                          {options.distric_name}
+                      </option>
+                  ))}
             </select>
           </div>
 

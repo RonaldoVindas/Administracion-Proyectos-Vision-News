@@ -81,7 +81,7 @@ const NewsPage = () => {
                                 Estadisticas
 
                             </li></Link>}
-                            {id!=""&&<Link className="linkfilters" to={`/`}>
+                            {id!=""&&<Link className="linkfilters" to={`/stats`}>
                             <li onClick={logout}>
                                 logout
 

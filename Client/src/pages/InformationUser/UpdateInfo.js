@@ -2,6 +2,7 @@ import './UpdateInfo.css';
 import React, {useState, useEffect}from 'react';
 import {useNavigate } from 'react-router-dom'
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 import Cookies from "universal-cookie";
 
@@ -101,7 +102,11 @@ function App() {
 
   return (
     <div className="containerUpdate">
-        <nav className="nav">Barra general</nav>
+        <div className='nav'>
+                <Link className="linkfilters" to={`/news`}>
+                    <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
+                    </Link>
+                </div>
 
         <div className='topUpdate'>
           <label className="styleFontTitle">Editar Perfil</label>

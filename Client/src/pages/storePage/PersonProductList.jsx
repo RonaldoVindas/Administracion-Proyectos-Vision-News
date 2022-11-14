@@ -56,6 +56,7 @@ const PersonProductList = () => {
                     });
 
   };
+  const [first_name, setName] = useState(cookies.get("first_name"));
 
   const [products, setProducts] = useState([]);
   
@@ -65,7 +66,7 @@ const PersonProductList = () => {
   
   return (
     <div>
-      <Data> Estos son sus productos canjeados <Button>Regreso</Button></Data>
+      <Data> Estos son sus productos canjeados, {first_name} <a href="/news"><Button>Regreso</Button></a></Data>
       <Container>
       {products.map((item) => (
         <PersonProductItem item={item} key={item.id} />

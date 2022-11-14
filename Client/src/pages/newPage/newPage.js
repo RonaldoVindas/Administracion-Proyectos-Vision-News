@@ -41,7 +41,9 @@ const NewPage = () => {
     <div className='container'>
 
       <div className='header'>
-        <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
+        <Link className="linkfilters" to={`/news`}>
+          <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
+        </Link>
       </div>
 
       <div className='navbar'>
@@ -87,11 +89,11 @@ const NewPage = () => {
 
           <div className="calificationAndLikeBarNewView">
             <div className='cali'>
-            <h2>Calificación: {getCalification()} de 5 estrellas</h2>
-            <button type="">Calificar</button>
+              <h2>Calificación: {getCalification()} de 5 estrellas</h2>
+              <button type="">Calificar</button>
             </div>
-            <div className='likebutton'> 
-            <button type="">Like</button>
+            <div className='likebutton'>
+              <button type="">Like</button>
             </div>
           </div>
 
@@ -131,7 +133,7 @@ const NewPage = () => {
                   return (
                     <div className='commentBody'>
                       <div className='imgComment'>
-                      <img className='comPhoto' src={eachComment.photo}></img>
+                        <img className='comPhoto' src={eachComment.photo}></img>
                       </div>
                       <div className='commentContent'>
                         <p>{eachComment.body}</p>

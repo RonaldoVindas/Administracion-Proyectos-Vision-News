@@ -82,7 +82,11 @@ function SeeInfo(){
 
   return (
     <div className="containerSee">
-        <nav className="nav">Barra general</nav>
+        <div className='nav'>
+                <Link className="linkfilters" to={`/news`}>
+                    <img src='https://res.cloudinary.com/dy7ksc08o/image/upload/v1668335019/VisionAP/Captura_desde_2022-11-13_04-21-46_y8cgsx.png' alt='Logo de la página'></img>
+                    </Link>
+                </div>
 
         <div className='top'>
           <label className="styleFontTitle">Perfil</label>
@@ -103,7 +107,7 @@ function SeeInfo(){
             <br/>
             <button className="button button2">NOTICIA FAVORITAS</button>
             <br/>
-            <button className="button button3">PRODUCTOS CANJEADOS</button>
+            <Link to = "/personCart"><button className="button button3">PRODUCTOS CANJEADOS</button></Link>
           </div>
           
 

@@ -67,7 +67,9 @@ const ProductList = () => {
 
   return (
     <div>
-      <Data> ¡Bienvenido {first_name}! su cantidad de puntos para canjear son: {points} <Button>Regreso</Button></Data>
+      
+      <Data> ¡Bienvenido {first_name}! su cantidad de puntos para canjear son: {points} <a href="/news"><Button >Regreso</Button></a></Data>
+
       <Container>
       {products.map((item) => ( //procesar todo lo que habia en la base
         <ProductItem item={item} key={item.product_id}/> // darle formato 

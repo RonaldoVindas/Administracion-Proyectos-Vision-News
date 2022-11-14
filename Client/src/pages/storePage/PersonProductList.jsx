@@ -3,8 +3,12 @@ import React, {useState, useEffect} from 'react'
 //import {products} from './data.js'
 import PersonProductItem from './PersonProductItem'
 import styled from 'styled-components';
-import axios from "axios";
 
+import Cookies from "universal-cookie/es6";
+import axios from "axios";
+import swal from "sweetalert";
+
+const cookies = new Cookies();
 const Container = styled.div`
     padding: 20px;
     display: flex;
@@ -40,10 +44,11 @@ padding: 0.25em 1em;
 `;
 
 const PersonProductList = () => {
+  const [person_id, setId] = useState(cookies.get("id_person"));
   const url = "http://localhost:4000";
   // /gpproducts
   const getProducts = async () => {
-    await axios.get(url + "/gpproducts")
+    await axios.get(url + `/gpproducts/${person_id}`)
                     .then(response => {
                       setProducts(response.data[0]);
                     }).catch(err => {

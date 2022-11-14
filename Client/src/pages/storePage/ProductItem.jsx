@@ -1,5 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components';
+import Cookies from "universal-cookie/es6";
+import axios from "axios";
+import swal from "sweetalert";
+
+const cookies = new Cookies();
+
 const Info = styled.div`
   opacity: 0;
   width: 100%;
@@ -59,23 +65,64 @@ padding: 0.25em 1em;
 
 
 const ProductItem = ({item}) => {
+  const [points, setPoints] = useState(cookies.get("points"));
+  const [person_id, setId] = useState(cookies.get("id_person"));
 
   async function onComprar(){
     //Quitarle 1 a la cantidad del producto
-    //Si la cantidad queda en 0 eliminar el producto de la base de datos
+    //Si la cantidad queda en 0 deshabilitar el producto de la compra
+    //Se le reducen los puntos que valia el objeto al usuario
     //Asignar el producto al usuario que lo compro
-    disminuirCantidadProducto();
+    console.log(person_id);
+    var pointsN = 0;
+    if(points >= item.cost){
+      pointsN = points - item.cost;
+      setPoints(pointsN);
+      cookies.set("points", pointsN, {path: "/"})
+    }
     asignarComprador();
     
   }
 
   async function disminuirCantidadProducto(){
     //Quitarle 1 a la cantidad del producto
-    //Si la cantidad queda en 0 eliminar el producto de la base de datos
+    //Si la cantidad queda en 0 deshabilitar el producto de la compra
+
+
   }
 
   async function asignarComprador(){
     //Asignar el producto al usuario que lo compro
+    const values = {
+      person_id: person_id,
+      product_id: item.product_id,
+      fec_creation: "2022/11/12",
+      user_creation: "Glori",
+  
+  }
+  console.log(values)
+  const url = "http://localhost:4000";
+  await axios.post(url + '/addRelationships', values,{
+      headers:{
+          "Content-Type": "multipart/form-data",
+      },
+  })
+      .then(response => {
+          console.log("RESPUESTA")
+          console.log(response)
+          if(response.status === 200){
+              swal("Registro completado","" ,"success").then((value) => {
+                  window.location.href="/";
+              })
+          }else{
+              swal("Error al registrar","" ,"warning")
+          }
+      })
+
+      .catch(error =>{
+          swal("Error al registrar","" ,"warning")
+          console.log(error);
+      })
   }
   return (
     <Container>

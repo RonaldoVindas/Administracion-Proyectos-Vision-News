@@ -54,10 +54,10 @@ const PersonProductItem = ({item}) => {
   return (
     <Container>
       <Circle/>
-      <Image src ={item.img}/>
+      <Image src ={item.photo}/>
       <Info>
           <Title>{item.name}</Title>
-          <Description>{item.short_description}</Description>
+          <Description>{item.description}</Description>
       </Info>
     </Container>
   )

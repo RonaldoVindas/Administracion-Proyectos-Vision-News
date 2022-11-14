@@ -58,7 +58,8 @@ function SeeInfo(){
     points: cookies.get('points'),
     phone: cookies.get('phone'),
     birthDay: cookies.get('birth_day'),
-    direction: cookies.get('direction')
+    direction: cookies.get('direction'),
+    photo: cookies.get('photo')
   });
 
   // <input name ="photo" type="file" id="image" onChange={(e) => setFieldValue('photo',e.target.files[0])}/> 
@@ -90,11 +91,12 @@ function SeeInfo(){
 
         <div className='top'>
           <label className="styleFontTitle">Perfil</label>
-          <img className="imageSee" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"/>
+          <img className="imageSee" src={info.photo}/>
           <div className="name">
             <label className="styleFont">{info.name} {info.lastName}</label>
             <br/>
-            <label className="styleFont2">Autor</label>
+            {info.editor==0
+            ?<label className="styleFont2">Autor</label>:<label className="styleFont2"></label> }
           </div>
 
           <div className = "point">

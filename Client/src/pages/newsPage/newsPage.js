@@ -9,7 +9,7 @@ let cookies = new Cookies()
 const NewsPage = () => {
     const [news, setNews] = useState([]);
     const [id, setid]= useState(cookies.get("id_person"));
-
+    const [editor, seteditor]= useState(cookies.get("editor"));
     const loadNews = async() => {
         await fetch('http://localhost:4000/gnews').then(res => res.json()).then(rows => setNews(rows));
     }
@@ -66,17 +66,17 @@ const NewsPage = () => {
                                 Filtros
 
                             </li></Link>
-                            {id!=""&&<Link className="linkfilters" to={`/createNews`}>
+                            {id!=""&&editor==0&&<Link className="linkfilters" to={`/createNews`}>
                             <li>
                                 Nueva noticia
 
                             </li></Link>}
-                            {id!=""&&<Link className="linkfilters" to={`/storePage`}>
+                            {id!=""&&editor==0&&<Link className="linkfilters" to={`/storePage`}>
                             <li>
                                 Tienda
 
                             </li></Link>}
-                            {id!=""&&<Link className="linkfilters" to={`/news`}>
+                            {id!=""&&editor==0&&<Link className="linkfilters" to={`/news`}>
                             <li>
                                 Estadisticas
 

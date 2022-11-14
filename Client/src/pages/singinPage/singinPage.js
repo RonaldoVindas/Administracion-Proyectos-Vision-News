@@ -117,7 +117,6 @@ const SinginPage = (props) => {
             first_name: name,
             last_name: lastname,
             image :image,
-            //photo: "CAMBIAR",
             birth_day: birthday,
             direction: address,
             phone: phone,
@@ -126,7 +125,9 @@ const SinginPage = (props) => {
             university_id: university,
             fec_creation: "2022/11/12",
             user_creation: name,
-            editor: 0
+            editor: 1,
+            persontype_id: 1
+
         }
         console.log(values)
 

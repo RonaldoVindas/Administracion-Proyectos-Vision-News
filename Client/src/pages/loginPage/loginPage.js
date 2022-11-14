@@ -38,7 +38,7 @@ const LoginPage = (props) => {
                         cookies.set('phone',         respuesta.phone,        {path: "/"});
                         cookies.set('birth_day',         respuesta.birth_day,        {path: "/"});
                         cookies.set('direction',         respuesta.direction,        {path: "/"});
-
+                        cookies.set('photo',         respuesta.photo,        {path: "/"});
                         swal("Usuario encontrado","" ,"success").then((value) => {
                             window.location.href="/news";
                         })
